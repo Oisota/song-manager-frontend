@@ -1,3 +1,14 @@
-<table>
-	<song-row v-for="song in songs" v-bind:song="song"></song-row>
+<table class="table">
+	<thead>
+		<tr>
+			<th>Song</th>
+			<th>Artist</th>
+			<th>Album</th>
+			<th>Length</th>
+			<th>Genre</th>
+		</tr>
+	</thead>
+	<tbody>
+		<song-row v-for="song in songs" v-bind:song="song"></song-row>
+	</tbody>
 </table>
