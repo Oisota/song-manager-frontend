@@ -1,12 +1,6 @@
 <main role="main">
 	<nav class="navbar navbar-expand-xl navbar-dark bg-dark">
-		<a class="navbar-brand" href="/">Song Manager</a>
+		<router-link class="navbar-brand" to="/">Song Manager</router-link>
 	</nav>
-	<div class="container-fluid">
-		<div class="row">
-			<div class="colum-xl-12">
-				<song-table v-bind:songs="songs"></song-table>
-			</div>
-		</div>
-	</div>
+	<router-view></router-view>
 </main>
