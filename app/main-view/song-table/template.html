@@ -1,6 +1,7 @@
 <table class="table">
 	<thead>
 		<tr>
+			<th></th>
 			<th>Song</th>
 			<th>Artist</th>
 			<th>Album</th>
@@ -9,6 +10,6 @@
 		</tr>
 	</thead>
 	<tbody>
-		<song-row v-for="song in songs" v-bind:song="song"></song-row>
+		<song-row v-for="(song, index) in songs" v-bind:song="song" v-bind:index="index"></song-row>
 	</tbody>
 </table>
