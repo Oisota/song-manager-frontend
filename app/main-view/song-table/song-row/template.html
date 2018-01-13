@@ -1,4 +1,4 @@
-<tr v-if="beingEdited" v-on:keyup.enter="update" v-on:keyup.esc="cancelUpdate">
+<tr v-if="beingEdited" v-on:keyup.enter="update" v-on:keyup.esc="cancel">
 	<td>{{index + 1}}
 	<td class="song-name"><input class="form-control" type="text" v-model="localSong.name"/></td>
 	<td class="song-artist"><input class="form-control" type="text" v-model="localSong.artist"/></td>
@@ -7,7 +7,10 @@
 	<td class="song-length">
 		<input class="len-input form-control" type="text" v-model="localSong.minutes"/>:<input class="len-input form-control" type="text" v-model="localSong.seconds"/>
 	</td>
-	<td><button class="btn btn-default" type="button" v-on:click="update">update</button></td>
+	<td>
+		<button class="btn btn-default" type="button" v-on:click="update">update</button>
+		<button class="btn btn-default" type="button" v-on:click="cancel">cancel</button>
+	</td>
 </tr>
 <tr v-else>
 	<td>{{index + 1}}

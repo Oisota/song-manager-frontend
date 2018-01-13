@@ -33,7 +33,7 @@ module.exports = {
 				index: this.index
 			});
 		},
-		cancelUpdate() {
+		cancel() {
 			this.beingEdited = false;
 			Object.assign(this.localSong, this.song);
 		}
