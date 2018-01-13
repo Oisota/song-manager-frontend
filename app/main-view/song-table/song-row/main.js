@@ -1,4 +1,5 @@
 module.exports = {
+	name: 'song-row',
 	props: {
 		song: {
 			type: Object,
