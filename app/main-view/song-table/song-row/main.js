@@ -36,6 +36,12 @@ module.exports = {
 		cancel() {
 			this.beingEdited = false;
 			Object.assign(this.localSong, this.song);
+		},
+		delSong() {
+			this.$store.dispatch('deleteSong', {
+				id: this.song.id,
+				index: this.index
+			});
 		}
 	}
 };

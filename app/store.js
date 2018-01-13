@@ -15,6 +15,9 @@ module.exports = new Vuex.Store({
 		addSong(state, payload) {
 			state.songs.data.push(payload.song);
 		},
+		deleteSong(state, payload) {
+			state.songs.data.splice(payload.index, 1);
+		}
 	},
 	actions: {
 		loadSongs(context, payload) {
@@ -64,6 +67,21 @@ module.exports = new Vuex.Store({
 				context.commit('addSong', {
 					song: data
 				});
+			})
+			.fail((jqXHR, textStatus, errorThrown) => {
+				if (process.env.NODE_ENV !== 'production') {
+					console.log(errorThrown);
+				}
+			});
+		},
+		deleteSong(context, payload) {
+			$.ajax({
+				url: 'http://localhost:6505/api/songs/'.concat(payload.id),
+				method: 'DELETE',
+				timeout: 5000,
+			})
+			.done((data, textStatus, jqXHR) => {
+				context.commit('deleteSong', payload);
 			})
 			.fail((jqXHR, textStatus, errorThrown) => {
 				if (process.env.NODE_ENV !== 'production') {

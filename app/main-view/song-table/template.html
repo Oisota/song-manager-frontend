@@ -9,7 +9,7 @@
 			<th>Length</th>
 			<th>
 				<button v-if="beingAdded" class="btn btn-default" type="button" v-on:click="cancel">cancel</button>
-				<button v-else class="btn btn-default" type="button" v-on:click="addSongMode">add</button>
+				<button v-else class="btn btn-primary" type="button" v-on:click="addSongMode">add</button>
 			</th>
 		</tr>
 	</thead>
@@ -24,7 +24,7 @@
 				<input class="len-input form-control" type="text" v-model="newSong.minutes"/>:<input class="len-input form-control" type="text" v-model="newSong.seconds"/>
 			</td>
 			<td>
-				<button class="btn btn-default" type="button" v-on:click="add">add</button>
+				<button class="btn btn-success" type="button" v-on:click="add">save</button>
 			</td>
 		</tr>
 		<song-row v-for="(song, index) in songs" v-bind:song="song" v-bind:index="index"></song-row>
