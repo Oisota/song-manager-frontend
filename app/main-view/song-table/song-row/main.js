@@ -13,7 +13,11 @@ module.exports = {
 	data() {
 		return {
 			beingEdited: false,
+			localSong: {}
 		}
+	},
+	created() {
+		this.localSong = Object.assign({}, this.song);
 	},
 	methods: {
 		edit() {
@@ -24,9 +28,14 @@ module.exports = {
 		},
 		update() {
 			this.beingEdited = false;
+			this.$store.dispatch('saveSong', {
+				song: Object.assign({}, this.localSong),
+				index: this.index
+			});
 		},
 		cancelUpdate() {
 			this.beingEdited = false;
+			Object.assign(this.localSong, this.song);
 		}
 	}
 };
