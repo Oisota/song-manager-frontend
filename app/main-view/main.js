@@ -1,17 +1,16 @@
-const store = require('../store');
 const SongTable = require('./song-table');
 
 module.exports = {
 	components: {
 		'song-table': SongTable,
 	},
-	data() {
-		return {
-			songs: []
-		}
-	},
 	created() {
 		this.loadSongs();
+	},
+	computed: {
+		songs() {
+			return this.$store.state.songs;
+		}
 	},
 	methods: {
 		loadSongs() {
@@ -23,7 +22,7 @@ module.exports = {
 				dataType: 'json'
 			})
 			.done((data, textStatus, jqXHR) => {
-				self.songs = data.songs;
+				self.$store.commit('loadSongs', data);
 			})
 			.fail((jqXHR, textStatus, errorThrown) => {
 				console.log(errorThrown);

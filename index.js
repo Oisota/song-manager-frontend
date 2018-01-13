@@ -1,15 +1,13 @@
 const Vue = require('vue');
-const VueRouter = require('vue-router');
+
 const App = require('./app');
-const routes = require('./app/routes');
-
-Vue.use(VueRouter);
-
-const router = new VueRouter({routes});
+const store = require('./store');
+const router = require('./app/router');
 
 const app = new Vue({
 	el: '#app',
 	router: router,
+	store: store,
 	render: h => h(App)
 });
 
