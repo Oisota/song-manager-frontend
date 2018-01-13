@@ -1,0 +1,17 @@
+.song-name,
+.song-artist,
+.song-album {
+	width: 15rem;
+}
+.song-genre {
+	width: 10rem;
+}
+.song-length {
+	width: 8rem;
+}
+
+.len-input {
+	text-align: center;
+	width: 3rem;
+	display: inline;
+}
