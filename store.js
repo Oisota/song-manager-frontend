@@ -61,7 +61,9 @@ module.exports = new Vuex.Store({
 				timeout: 5000,
 			})
 			.done((data, textStatus, jqXHR) => {
-				context.commit('addSong', payload);
+				context.commit('addSong', {
+					song: data
+				});
 			})
 			.fail((jqXHR, textStatus, errorThrown) => {
 				if (process.env.NODE_ENV !== 'production') {
