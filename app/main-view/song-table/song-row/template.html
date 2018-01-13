@@ -1,11 +1,11 @@
 <tr v-if="beingEdited" v-on:keyup.enter="update" v-on:keyup.esc="cancelUpdate">
 	<td>{{index + 1}}
-	<td class="song-name"><input class="form-control" type="text" v-model.lazy="song.name"/></td>
-	<td class="song-artist"><input class="form-control" type="text" v-model.lazy="song.artist"/></td>
-	<td class="song-album"><input class="form-control" type="text" v-model.lazy="song.album"/></td>
-	<td class="song-genre"><input class="form-control" type="text" v-model.lazy="song.genre"/></td>
+	<td class="song-name"><input class="form-control" type="text" v-model="song.name"/></td>
+	<td class="song-artist"><input class="form-control" type="text" v-model="song.artist"/></td>
+	<td class="song-album"><input class="form-control" type="text" v-model="song.album"/></td>
+	<td class="song-genre"><input class="form-control" type="text" v-model="song.genre"/></td>
 	<td class="song-length">
-		<input class="len-input form-control" type="text" v-model.lazy="song.minutes"/>:<input class="len-input form-control" type="text" v-model.lazy="song.seconds"/>
+		<input class="len-input form-control" type="text" v-model="song.minutes"/>:<input class="len-input form-control" type="text" v-model="song.seconds"/>
 	</td>
 	<td><button class="btn btn-default" type="button" v-on:click="update">update</button></td>
 </tr>
