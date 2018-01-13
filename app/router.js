@@ -7,6 +7,7 @@ const NotFound = require('./not-found');
 Vue.use(VueRouter);
 
 module.exports = new VueRouter({
+	mode: process.env.NODE_ENV === 'production' ? 'history' : 'hash',
 	routes: [
 		{
 			path: '/',
