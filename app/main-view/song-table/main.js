@@ -52,9 +52,16 @@ module.exports = {
 			this.$store.dispatch('createSong', {
 				song: this.newSong
 			});
+			this.cancel();
 		},
 		cancel() {
 			this.beingAdded = false;
-		}
+			this.newSong.name = '';
+			this.newSong.artist = '';
+			this.newSong.album = '';
+			this.newSong.genre = '';
+			this.newSong.minutes = 0;
+			this.newSong.seconds = 0;
+		},
 	}
 };
