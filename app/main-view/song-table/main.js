@@ -8,6 +8,7 @@ module.exports = {
 	data() {
 		return {
 			beingAdded: false,
+			searchText: '',
 			newSong: {
 				name: '',
 				artist: '',
@@ -23,7 +24,21 @@ module.exports = {
 	},
 	computed: {
 		songs() {
-			return this.$store.state.songs.data;
+			if (this.searchText !== '') {
+				return this.$store.state.songs.data
+					.filter((function (song) {
+						const name = song.name || '';
+						const artist = song.artist || '';
+						const album = song.album || '';
+						const genre = song.genre || '';
+						return name.toLowerCase().includes(this.searchText.toLowerCase())
+							|| artist.toLowerCase().includes(this.searchText.toLowerCase())
+							|| album.toLowerCase().includes(this.searchText.toLowerCase())
+							|| genre.toLowerCase().includes(this.searchText.toLowerCase());
+					}).bind(this));
+			} else {
+				return this.$store.state.songs.data
+			}
 		}
 	},
 	methods: {

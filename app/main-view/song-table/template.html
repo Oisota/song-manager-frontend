@@ -1,32 +1,35 @@
-<table class="table table-responsive ml-3 mt-3">
-	<thead class="thead-dark">
-		<tr>
-			<th></th>
-			<th>Song</th>
-			<th>Artist</th>
-			<th>Album</th>
-			<th>Genre</th>
-			<th>Length</th>
-			<th>
-				<button v-if="beingAdded" class="btn btn-default" type="button" v-on:click="cancel">cancel</button>
-				<button v-else class="btn btn-primary" type="button" v-on:click="addSongMode">add</button>
-			</th>
-		</tr>
-	</thead>
-	<tbody>
-		<tr v-if="beingAdded" v-on:keyup.enter="add" v-on:keyup.esc="cancel">
-			<td></td>
-			<td class="song-name"><input class="form-control" type="text" v-model="newSong.name"/></td>
-			<td class="song-artist"><input class="form-control" type="text" v-model="newSong.artist"/></td>
-			<td class="song-album"><input class="form-control" type="text" v-model="newSong.album"/></td>
-			<td class="song-genre"><input class="form-control" type="text" v-model="newSong.genre"/></td>
-			<td class="song-length">
-				<input class="len-input form-control" type="text" v-model="newSong.minutes"/>:<input class="len-input form-control" type="text" v-model="newSong.seconds"/>
-			</td>
-			<td>
-				<button class="btn btn-success" type="button" v-on:click="add">save</button>
-			</td>
-		</tr>
-		<song-row v-for="(song, index) in songs" v-bind:song="song" v-bind:index="index"></song-row>
-	</tbody>
-</table>
+<div class="ml-3 mt-3">
+	<input class="form-control mt-2 mb-2" type="text" v-model.trim="searchText"/>
+	<table class="table table-responsive">
+		<thead class="thead-dark">
+			<tr>
+				<th></th>
+				<th>Song</th>
+				<th>Artist</th>
+				<th>Album</th>
+				<th>Genre</th>
+				<th>Length</th>
+				<th>
+					<button v-if="beingAdded" class="btn btn-default" type="button" v-on:click="cancel">cancel</button>
+					<button v-else class="btn btn-primary" type="button" v-on:click="addSongMode">add</button>
+				</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr v-if="beingAdded" v-on:keyup.enter="add" v-on:keyup.esc="cancel">
+				<td></td>
+				<td class="song-name"><input class="form-control" type="text" v-model="newSong.name"/></td>
+				<td class="song-artist"><input class="form-control" type="text" v-model="newSong.artist"/></td>
+				<td class="song-album"><input class="form-control" type="text" v-model="newSong.album"/></td>
+				<td class="song-genre"><input class="form-control" type="text" v-model="newSong.genre"/></td>
+				<td class="song-length">
+					<input class="len-input form-control" type="text" v-model="newSong.minutes"/>:<input class="len-input form-control" type="text" v-model="newSong.seconds"/>
+				</td>
+				<td>
+					<button class="btn btn-success" type="button" v-on:click="add">save</button>
+				</td>
+			</tr>
+			<song-row v-for="(song, index) in songs" v-bind:song="song" v-bind:index="index"></song-row>
+		</tbody>
+	</table>
+</div>
