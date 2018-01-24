@@ -1,6 +1,8 @@
 const Vue = require('vue');
 const Vuex = require('vuex');
 
+const http = require('./http');
+
 Vue.use(Vuex);
 
 module.exports = new Vuex.Store({
@@ -21,73 +23,42 @@ module.exports = new Vuex.Store({
 	},
 	actions: {
 		loadSongs(context, payload) {
-			$.ajax({
-				url: 'http://127.0.0.1:6505/api/songs',
-				method: 'GET',
-				timeout: 5000,
-				dataType: 'json'
-			})
-			.done((data, textStatus, jqXHR) => {
-				context.commit('loadSongs', data);
-			})
-			.fail((jqXHR, textStatus, errorThrown) => {
-				if (process.env.NODE_ENV !== 'production') {
-					console.log(errorThrown);
-				}
-			});
+			http.get('/songs')
+				.then(res => {
+					context.commit('loadSongs', res.data);
+				})
+				.catch(err => {
+					console.error(err.message);
+				});
 		},
 		saveSong(context, payload) {
-			$.ajax({
-				url: 'http://localhost:6505/api/songs/'.concat(payload.song.id),
-				method: 'PUT',
-				contentType: 'application/json',
-				dataType: 'json',
-				data: JSON.stringify(payload.song),
-				timeout: 5000,
-			})
-			.done((data, textStatus, jqXHR) => {
-				context.commit('updateSong', payload);
-			})
-			.fail((jqXHR, textStatus, errorThrown) => {
-				if (process.env.NODE_ENV !== 'production') {
-					console.log(errorThrown);
-				}
-			});
+			http.put(`/songs/${payload.song.id}`, payload.song)
+				.then(res => {
+					context.commit('updateSong', payload);
+				})
+				.catch(err => {
+					console.log(err);
+				});
 		},
 		createSong(context, payload) {
-			$.ajax({
-				url: 'http://localhost:6505/api/songs',
-				method: 'POST',
-				contentType: 'application/json',
-				dataType: 'json',
-				data: JSON.stringify(payload.song),
-				timeout: 5000,
-			})
-			.done((data, textStatus, jqXHR) => {
-				context.commit('addSong', {
-					song: data
+			http.post('/songs', payload.song)
+				.then(res => {
+					context.commit('addSong', {
+						song: data
+					});
+				})
+				.catch(err => {
+					console.log(err);
 				});
-			})
-			.fail((jqXHR, textStatus, errorThrown) => {
-				if (process.env.NODE_ENV !== 'production') {
-					console.log(errorThrown);
-				}
-			});
 		},
 		deleteSong(context, payload) {
-			$.ajax({
-				url: 'http://localhost:6505/api/songs/'.concat(payload.id),
-				method: 'DELETE',
-				timeout: 5000,
-			})
-			.done((data, textStatus, jqXHR) => {
-				context.commit('deleteSong', payload);
-			})
-			.fail((jqXHR, textStatus, errorThrown) => {
-				if (process.env.NODE_ENV !== 'production') {
-					console.log(errorThrown);
-				}
-			});
+			http.delete(`/songs/${payload.id}`)
+				.then(res => {
+					context.commit('deleteSong', payload);
+				})
+				.catch(err => {
+					console.log(err);
+				});
 		}
 	},
 	state: {
