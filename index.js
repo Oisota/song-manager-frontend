@@ -2,7 +2,10 @@ const Vue = require('vue');
 
 const App = require('./app');
 const store = require('./store');
+const http = require('./http');
 const router = require('./router');
+
+Vue.prototype.$http = http;
 
 const app = new Vue({
 	el: '#app',
@@ -12,3 +15,4 @@ const app = new Vue({
 });
 
 window.app = app;
+window.store = store;

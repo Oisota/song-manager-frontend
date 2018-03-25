@@ -1,10 +1,12 @@
 const axios = require('axios');
 
-module.exports = axios.create({
+const http = axios.create({
 	baseURL: 'http://localhost:6505/api',
 	timeout: 5000,
 	responseType: 'json',
 	headers: {
-		'Content-Type': 'application/json'
+		'Content-Type': 'application/json',
 	}
 });
+
+module.exports = http;
