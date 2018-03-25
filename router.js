@@ -1,11 +1,12 @@
 const Vue = require('vue');
 const VueRouter = require('vue-router');
 
+const store = require('./store');
 const pages = require('./app/pages');
 
 Vue.use(VueRouter);
 
-module.exports = new VueRouter({
+const router = new VueRouter({
 	mode: process.env.NODE_ENV === 'production' ? 'history' : 'hash',
 	routes: [
 		{
@@ -26,3 +27,14 @@ module.exports = new VueRouter({
 		}
 	]
 });
+
+router.beforeEach((to, from, next) => {
+	const loggedIn = store.getters.userLoggedIn;
+	if (!loggedIn && to.path !== '/login') {
+		next('/login');
+	} else {
+		next();
+	}
+});
+
+module.exports = router;
