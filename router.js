@@ -1,10 +1,7 @@
 const Vue = require('vue');
 const VueRouter = require('vue-router');
 
-const MainView = require('./main-view');
-const SetListView = require('./setlist-view');
-const LoginView = require('./login-view');
-const NotFound = require('./not-found');
+const pages = require('./app/pages');
 
 Vue.use(VueRouter);
 
@@ -13,19 +10,19 @@ module.exports = new VueRouter({
 	routes: [
 		{
 			path: '/',
-			component: MainView
+			component: pages.MainView
 		},
 		{
 			path: '/set-lists',
-			component: SetListView
+			component: pages.SetListView
 		},
 		{
 			path: '/login',
-			component: LoginView
+			component: pages.LoginView
 		},
 		{
 			path: '*',
-			component: NotFound
+			component: pages.NotFound
 		}
 	]
 });
