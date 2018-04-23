@@ -9,11 +9,11 @@
 					<form v-on:submit.prevent="login">
 						<div class="form-group">
 							<label for="email">Email</label>
-							<input v-model="email" class="form-control" type="email" name="email" id="email" value="" placholder="person@example.com"/>
+							<input v-model="email" class="form-control" type="email" name="email" id="email" value="" placholder="person@example.com" required/>
 						</div>
 						<div class="form-group">
 							<label for="password">Password</label>
-							<input v-model="password" class="form-control" type="password" name="password" id="password" value="" placholder="password"/>
+							<input v-model="password" class="form-control" type="password" name="password" id="password" value="" placholder="password" required/>
 						</div>
 						<input class="btn btn-primary" type="submit" name="login" id="login" value="Login" />
 					</form>

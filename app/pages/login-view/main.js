@@ -14,9 +14,7 @@ module.exports = {
 			});
 
 			if (resp.status == 200) {
-				this.$store.commit('login', {
-					token: resp.data.token;
-				});
+				this.$store.commit('login', resp.data);
 				this.$router.push('/');
 			}
 		}

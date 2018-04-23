@@ -25,7 +25,7 @@ module.exports = {
 	computed: {
 		songs() {
 			if (this.searchText !== '') {
-				return this.$store.state.songs.data
+				return this.$store.state.songs
 					.filter((function (song) {
 						const name = song.name || '';
 						const artist = song.artist || '';
@@ -37,7 +37,7 @@ module.exports = {
 							|| genre.toLowerCase().includes(this.searchText.toLowerCase());
 					}).bind(this));
 			} else {
-				return this.$store.state.songs.data
+				return this.$store.state.songs;
 			}
 		}
 	},

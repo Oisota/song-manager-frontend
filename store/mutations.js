@@ -1,5 +1,15 @@
 exports.login = (state, payload) => {
 	state.user.token = payload.token;
+	state.user.role = payload.role;
+	state.user.id = payload.id;
+	localStorage.setItem('user', state.user.token);
+};
+
+exports.logout = (state, payload) => {
+	state.user.token = null;
+	state.user.role = null;
+	state.user.id = null;
+	localStorage.removeItem('user');
 };
 
 exports.loadSongs = (state, payload) => {

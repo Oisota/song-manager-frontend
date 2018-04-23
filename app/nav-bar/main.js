@@ -4,5 +4,11 @@ module.exports = {
 		loggedIn() {
 			return this.$store.getters.userLoggedIn;
 		}
+	},
+	methods: {
+		logout() {
+			this.$store.commit('logout');
+			this.$router.push('/login');
+		}
 	}
 };
