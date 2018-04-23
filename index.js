@@ -7,6 +7,8 @@ const router = require('./router');
 
 Vue.prototype.$http = http;
 
+store.commit('loadUser');
+
 const app = new Vue({
 	el: '#app',
 	router: router,
