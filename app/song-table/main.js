@@ -24,21 +24,7 @@ module.exports = {
 	},
 	computed: {
 		songs() {
-			if (this.searchText !== '') {
-				return this.$store.state.songs
-					.filter((function (song) {
-						const name = song.name || '';
-						const artist = song.artist || '';
-						const album = song.album || '';
-						const genre = song.genre || '';
-						return name.toLowerCase().includes(this.searchText.toLowerCase())
-							|| artist.toLowerCase().includes(this.searchText.toLowerCase())
-							|| album.toLowerCase().includes(this.searchText.toLowerCase())
-							|| genre.toLowerCase().includes(this.searchText.toLowerCase());
-					}).bind(this));
-			} else {
-				return this.$store.state.songs;
-			}
+			return this.$store.state.songs;
 		}
 	},
 	methods: {
