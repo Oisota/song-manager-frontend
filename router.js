@@ -1,13 +1,14 @@
 const Vue = require('vue');
 const VueRouter = require('vue-router');
 
+const config = require('./config');
 const store = require('./store');
 const pages = require('./app/pages');
 
 Vue.use(VueRouter);
 
 const router = new VueRouter({
-	mode: process.env.NODE_ENV === 'production' ? 'history' : 'hash',
+	mode: config.historyMode,
 	routes: [
 		{
 			path: '/',
