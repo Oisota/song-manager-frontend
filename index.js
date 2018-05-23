@@ -17,4 +17,3 @@ const app = new Vue({
 });
 
 window.app = app;
-window.store = store;
