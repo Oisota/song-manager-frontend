@@ -17,7 +17,7 @@ module.exports = {
 				minutes: 0,
 				seconds: 0
 			}
-		}
+		};
 	},
 	created() {
 		this.$store.dispatch('loadSongs');
