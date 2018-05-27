@@ -15,9 +15,9 @@
 			</tr>
 		</thead>
 		<tbody>
-			<tr v-if="beingAdded" v-on:keyup.enter="add" v-on:keyup.esc="cancel">
+			<tr v-show="beingAdded" v-on:keyup.enter="add" v-on:keyup.esc="cancel">
 				<td></td>
-				<td class="song-name"><input class="form-control" type="text" v-model="newSong.name"/></td>
+				<td class="song-name"><input class="form-control" type="text" ref="songName" v-model="newSong.name"/></td>
 				<td class="song-artist"><input class="form-control" type="text" v-model="newSong.artist"/></td>
 				<td class="song-album"><input class="form-control" type="text" v-model="newSong.album"/></td>
 				<td class="song-genre"><input class="form-control" type="text" v-model="newSong.genre"/></td>

@@ -32,7 +32,7 @@ module.exports = {
 		addSongMode() {
 			this.beingAdded = true;
 			this.$nextTick(function () {
-				this.$el.querySelector('.song-name').children[0].focus();
+				this.$refs.songName.focus();
 			});
 		},
 		add() {
