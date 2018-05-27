@@ -22,7 +22,7 @@
 				<td class="song-album"><input class="form-control" type="text" v-model="newSong.album"/></td>
 				<td class="song-genre"><input class="form-control" type="text" v-model="newSong.genre"/></td>
 				<td class="song-length">
-					<input class="len-input form-control" type="text" v-model="newSong.minutes"/>:<input class="len-input form-control" type="text" v-model="newSong.seconds"/>
+					<length-input v-model="newSong.length"></length-input>
 				</td>
 				<td>
 					<button class="btn btn-success" type="button" v-on:click="add">save</button>

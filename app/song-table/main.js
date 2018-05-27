@@ -1,9 +1,11 @@
 const SongRow = require('./song-row');
+const LengthInput = require('../length-input');
 
 module.exports = {
 	name: 'song-table',
 	components: {
 		'song-row': SongRow,
+		'length-input': LengthInput,
 	},
 	data() {
 		return {
@@ -14,8 +16,7 @@ module.exports = {
 				artist: '',
 				album: '',
 				genre: '',
-				minutes: 0,
-				seconds: 0
+				length: 0,
 			}
 		};
 	},

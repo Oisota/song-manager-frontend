@@ -1,3 +1,5 @@
+const LengthInput = require('../../length-input');
+
 module.exports = {
 	name: 'song-row',
 	props: {
@@ -9,6 +11,9 @@ module.exports = {
 			type: Number,
 			required: true,
 		}
+	},
+	components: {
+		'length-input': LengthInput,
 	},
 	data() {
 		return {
@@ -42,6 +47,13 @@ module.exports = {
 				id: this.song.id,
 				index: this.index
 			});
+		}
+	},
+	filters: {
+		formatLength(v) {
+			const minutes = Math.floor(v / 60);
+			const seconds = v % 60;
+			return `${minutes}:${seconds}`;
 		}
 	}
 };
