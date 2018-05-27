@@ -15,10 +15,6 @@ const router = new VueRouter({
 			component: pages.MainView
 		},
 		{
-			path: '/set-lists',
-			component: pages.SetListView
-		},
-		{
 			path: '/login',
 			component: pages.LoginView
 		},
