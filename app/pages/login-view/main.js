@@ -10,31 +10,26 @@ module.exports = {
 	},
 	methods: {
 		login() {
-			this.$http.post('/auth/login', {
+			this.$store.dispatch('login', {
 				email: this.email,
 				password: this.password,
 			}).then(resp => {
-				if (resp.status == 200) {
-					this.$store.commit('login', resp.data);
-					this.$router.push('/');
-				}
+				this.$router.push('/');
 			}).catch(err => {
 				console.log(err);
 			});
 
 		},
 		register() {
-			this.$http.post('/auth/register', {
+			this.$store.dispatch('register', {
 				email: this.registerEmail,
 				password: this.registerPassword,
 			}).then(resp => {
-				if (resp.status == 200) {
-					this.$store.commit('addAlert', {
-						title: 'Account Created',
-						message: 'An email will be sent once you are verified',
-						category: 'success'
-					});
-				}
+				this.$store.commit('addAlert', {
+					title: 'Account Created',
+					message: 'An email will be sent once you are verified',
+					category: 'success'
+				});
 			}).catch(err => {
 				this.$store.commit('addAlert', {
 					title: 'Error',

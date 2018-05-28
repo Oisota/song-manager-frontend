@@ -1,8 +1,42 @@
-const http = require('../http');
-const state = require('./state');
+const http = require('./http');
+
+exports.login = (context, payload) => {
+	return new Promise((resolve, reject) => {
+		http.post('/auth/login', {
+			email: payload.email,
+			password: payload.password
+		}).then(resp => {
+			if (resp.status === 200) {
+				context.commit('login', resp.data);
+				resolve(resp);
+			} else {
+				reject(resp);
+			}
+		}).catch(err => {
+			reject(err);
+		});
+	});
+};
+
+exports.register = (context, payload) => {
+	return new Promise((resolve, reject) => {
+		http.post('/auth/register', {
+			email: payload.email,
+			password: payload.password
+		}).then(resp => {
+			if (resp.status === 200) {
+				resolve(resp);
+			} else {
+				reject(resp);
+			}
+		}).catch(err => {
+			reject(err);
+		});
+	});
+};
 
 exports.loadSongs = (context, payload) => {
-	http.get(`/users/${state.user.id}/songs`)
+	http.get(`/users/${context.state.user.id}/songs`)
 		.then(res => {
 			context.commit('loadSongs', res.data);
 		})
@@ -12,7 +46,7 @@ exports.loadSongs = (context, payload) => {
 };
 
 exports.saveSong = (context, payload) => {
-	http.put(`/users/${state.user.id}/songs/${payload.song.id}`, payload.song)
+	http.put(`/users/${context.state.user.id}/songs/${payload.song.id}`, payload.song)
 		.then(res => {
 			context.commit('updateSong', payload);
 		})
@@ -21,11 +55,13 @@ exports.saveSong = (context, payload) => {
 		});
 };
 
-exports.createSong = (context, payload) => {
-	http.post(`/users/${state.user.id}/songs`, payload.song)
+exports.createSong = (context, song) => {
+	console.log(song);
+	http.post(`/users/${context.state.user.id}/songs`, song)
 		.then(res => {
+			const s = Object.assign(song, res.data);
 			context.commit('addSong', {
-				song: data
+				song: s,
 			});
 		})
 		.catch(err => {
@@ -34,7 +70,7 @@ exports.createSong = (context, payload) => {
 };
 
 exports.deleteSong = (context, payload) => {
-	http.delete(`/users/${state.user.id}/songs/${payload.id}`)
+	http.delete(`/users/${context.state.user.id}/songs/${payload.id}`)
 		.then(res => {
 			context.commit('deleteSong', payload);
 		})

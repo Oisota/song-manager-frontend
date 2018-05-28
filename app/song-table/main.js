@@ -36,10 +36,10 @@ module.exports = {
 			});
 		},
 		add() {
-			this.$store.dispatch('createSong', {
-				song: this.newSong
-			});
-			this.cancel();
+			this.$store.dispatch('createSong', this.newSong)
+				.then(() => {
+					this.cancel();
+				});
 		},
 		cancel() {
 			this.beingAdded = false;
@@ -47,8 +47,7 @@ module.exports = {
 			this.newSong.artist = '';
 			this.newSong.album = '';
 			this.newSong.genre = '';
-			this.newSong.minutes = 0;
-			this.newSong.seconds = 0;
+			this.newSong.length = 0;
 		},
 	}
 };
