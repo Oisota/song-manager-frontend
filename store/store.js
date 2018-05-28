@@ -1,7 +1,6 @@
 const Vue = require('vue');
 const Vuex = require('vuex');
 
-const http = require('../http');
 const state = require('./state');
 const actions = require('./actions');
 const mutations = require('./mutations');
@@ -15,20 +14,6 @@ const store = new Vuex.Store({
 	mutations,
 	actions,
 	getters
-});
-
-http.interceptors.request.use(config => {
-	const token = store.state.user.token;
-	config.headers['Authorization'] = `Bearer ${token}`;
-	return config;
-}, error => {
-	return Promise.reject(error);
-});
-
-http.interceptors.response.use(response => {
-	return response;
-}, error => {
-	store.dispatch('addAlert', error);
 });
 
 module.exports = store;

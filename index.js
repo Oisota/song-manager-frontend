@@ -2,7 +2,7 @@ const Vue = require('vue');
 
 const App = require('./app');
 const store = require('./store');
-const http = require('./http');
+const http = require('./store/http');
 const router = require('./router');
 
 Vue.prototype.$http = http;
