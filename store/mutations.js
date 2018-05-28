@@ -24,19 +24,19 @@ exports.logout = (state, payload) => {
 };
 
 exports.loadSongs = (state, payload) => {
-	state.songs.data = payload.songs;
+	state.songs = payload.songs;
 };
 
 exports.updateSong = (state, payload) => {
-	state.songs.data.splice(payload.index, 1, payload.song);
+	state.songs.splice(payload.index, 1, payload.song);
 };
 
 exports.addSong = (state, payload) => {
-	state.songs.data.push(payload.song);
+	state.songs.push(payload.song);
 };
 
 exports.deleteSong = (state, payload) => {
-	state.songs.data.splice(payload.index, 1);
+	state.songs.splice(payload.index, 1);
 };
 
 exports.addAlert = (state, payload) => {
