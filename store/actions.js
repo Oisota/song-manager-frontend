@@ -36,13 +36,20 @@ exports.register = (context, payload) => {
 };
 
 exports.loadSongs = (context, payload) => {
-	http.get(`/users/${context.state.user.id}/songs`)
-		.then(res => {
-			context.commit('loadSongs', res.data);
-		})
-		.catch(err => {
-			console.error(err.message);
-		});
+	return new Promise((resolve, reject) => {
+		http.get(`/users/${context.state.user.id}/songs`)
+			.then(resp => {
+				if (resp.status === 200) {
+					context.commit('loadSongs', resp.data);
+					resolve(resp);
+				} else {
+					reject(resp);
+				}
+			})
+			.catch(err => {
+				reject(err);
+			});
+	});
 };
 
 exports.saveSong = (context, payload) => {

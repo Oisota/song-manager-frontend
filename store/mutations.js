@@ -23,8 +23,8 @@ exports.logout = (state, payload) => {
 	localStorage.removeItem('user');
 };
 
-exports.loadSongs = (state, payload) => {
-	state.songs = payload.songs;
+exports.loadSongs = (state, songs) => {
+	state.songs = songs;
 };
 
 exports.updateSong = (state, payload) => {
