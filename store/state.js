@@ -4,6 +4,7 @@ module.exports = {
 		id: null,
 		role: null,
 	},
+	alerts: [],
 	songs: [],
 	setlists: []
 };

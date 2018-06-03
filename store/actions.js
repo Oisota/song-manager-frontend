@@ -18,6 +18,22 @@ exports.login = (context, payload) => {
 	});
 };
 
+exports.createAlert = (context, payload) => {
+	const a = {
+		title: payload.title || '',
+		text: payload.text || '',
+		type: 'alert-' + (payload.type || 'danger'),
+	};
+
+	context.commit('createAlert', a);
+
+	if (payload.dismiss) {
+		setTimeout(() => {
+			context.commit('dismissAlert', context.state.alerts.indexOf(a));
+		}, payload.dismiss);
+	}
+};
+
 exports.register = (context, payload) => {
 	return new Promise((resolve, reject) => {
 		http.post('/auth/register', {

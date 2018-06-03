@@ -23,6 +23,14 @@ exports.logout = (state, payload) => {
 	localStorage.removeItem('user');
 };
 
+exports.createAlert = (state, payload) => {
+	state.alerts.unshift(payload);
+};
+
+exports.dismissAlert = (state, index) => {
+	state.alerts.splice(index, 1);
+};
+
 exports.loadSongs = (state, songs) => {
 	state.songs = songs;
 };
@@ -37,8 +45,4 @@ exports.addSong = (state, payload) => {
 
 exports.deleteSong = (state, payload) => {
 	state.songs.splice(payload.index, 1);
-};
-
-exports.addAlert = (state, payload) => {
-	console.log(payload);
 };

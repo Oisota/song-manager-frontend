@@ -13,4 +13,7 @@ const app = new Vue({
 	render: h => h(App)
 });
 
-window.app = app;
+if (process.env.NODE_ENV !== 'production') {
+	window.app = app;
+	window.store = store;
+}
