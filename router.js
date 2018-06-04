@@ -12,20 +12,30 @@ const router = new VueRouter({
 	routes: [
 		{
 			path: '/',
-			component: pages.MainView
+			component: pages.MainView,
+			meta: {
+				title: 'Song Manager',
+			}
 		},
 		{
 			path: '/login',
-			component: pages.LoginView
+			component: pages.LoginView,
+			meta: {
+				title: 'Login',
+			}
 		},
 		{
 			path: '*',
-			component: pages.NotFound
+			component: pages.NotFound,
+			meta: {
+				title: 'Not Found',
+			}
 		}
 	]
 });
 
-router.beforeEach((to, from, next) => {
+router.beforeEach((to, from_, next) => {
+	document.title = to.meta.title;
 	const loggedIn = store.getters.userLoggedIn;
 	if (!loggedIn && to.path !== '/login') {
 		next('/login');
@@ -33,5 +43,6 @@ router.beforeEach((to, from, next) => {
 		next();
 	}
 });
+
 
 module.exports = router;
