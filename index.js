@@ -3,6 +3,7 @@ const Vue = require('vue');
 const App = require('./app');
 const store = require('./store');
 const router = require('./router');
+const config = require('./config');
 
 store.commit('loadUser');
 
@@ -13,7 +14,7 @@ const app = new Vue({
 	render: h => h(App)
 });
 
-if (process.env.NODE_ENV !== 'production') {
+if (config.env !== 'production') {
 	window.app = app;
 	window.store = store;
 }
