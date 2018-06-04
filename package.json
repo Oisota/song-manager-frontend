@@ -7,7 +7,9 @@
 		"start": "http-server build",
 		"build": "npm run lint && npm run build-html && npm run build-js",
 		"build-html": "mkdir -p build && cp html/* build",
-		"build-js": "browserify -t envify -t vueify -e index.js -o build/bundle.js",
+		"build-js": "npm run build-lib-js && npm run build-app-js",
+		"build-app-js": "browserify -t envify -t vueify -e index.js -x 'vue' -x 'vuex' -x 'vue-router' -x 'axios' -o build/app.js",
+		"build-lib-js": "browserify -r 'vue' -r 'vuex' -r 'vue-router' -r 'axios' -o build/lib.js",
 		"lint": "eslint '*.js' 'app/*/**.js' 'store/*/**.js'",
 		"test": "echo \"Error: no test specified\" && exit 1"
 	},
