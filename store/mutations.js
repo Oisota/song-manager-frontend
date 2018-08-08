@@ -30,19 +30,3 @@ exports.createAlert = (state, payload) => {
 exports.dismissAlert = (state, index) => {
 	state.alerts.splice(index, 1);
 };
-
-exports.loadSongs = (state, songs) => {
-	state.songs = songs;
-};
-
-exports.updateSong = (state, payload) => {
-	state.songs.splice(payload.index, 1, payload.song);
-};
-
-exports.addSong = (state, payload) => {
-	state.songs.push(payload.song);
-};
-
-exports.deleteSong = (state, payload) => {
-	state.songs.splice(payload.index, 1);
-};
