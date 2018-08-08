@@ -16,5 +16,4 @@ const app = new Vue({
 
 if (config.env !== 'production') {
 	window.app = app;
-	window.store = store;
 }
