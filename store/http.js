@@ -1,7 +1,8 @@
 const axios = require('axios');
+const config = require('../config');
 
 const http = axios.create({
-	baseURL: 'http://localhost:6505/api',
+	baseURL: config.API_URL,
 	timeout: 5000,
 	responseType: 'json',
 	headers: {
