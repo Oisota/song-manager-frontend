@@ -1,6 +1,6 @@
 const Vue = require('vue');
 
-const App = require('./app');
+const App = require('./components/app');
 const store = require('./store');
 const router = require('./router');
 const config = require('./config');

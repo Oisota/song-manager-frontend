@@ -1,4 +1,4 @@
-exports.loadUser = (state, payload) => {
+exports.loadUser = (state) => {
 	const user_str = localStorage.getItem('user');
 	if (user_str === null) {
 		return;
@@ -16,7 +16,7 @@ exports.login = (state, payload) => {
 	localStorage.setItem('user', JSON.stringify(state.user));
 };
 
-exports.logout = (state, payload) => {
+exports.logout = (state) => {
 	state.user.token = null;
 	state.user.role = null;
 	state.user.id = null;

@@ -6,11 +6,11 @@
 	"scripts": {
 		"start": "http-server build",
 		"build": "npm run lint && npm run build-html && npm run build-js",
-		"build-html": "mkdir -p build && cp html/* build",
+		"build-html": "mkdir -p build && cp src/html/* build",
 		"build-js": "npm run build-lib-js && npm run build-app-js",
-		"build-app-js": "browserify -t envify -t vueify -e index.js -x 'vue' -x 'vuex' -x 'vue-router' -x 'axios' -o build/app.js",
+		"build-app-js": "browserify -t envify -t vueify -e src/main.js -x 'vue' -x 'vuex' -x 'vue-router' -x 'axios' -o build/app.js",
 		"build-lib-js": "browserify -r 'vue' -r 'vuex' -r 'vue-router' -r 'axios' -o build/lib.js",
-		"lint": "eslint '*.js' 'app/*/**.js' 'store/*/**.js'",
+		"lint": "eslint 'scripts/*.js' 'src/*/**.js'",
 		"test": "echo \"Error: no test specified\" && exit 1"
 	},
 	"keywords": [

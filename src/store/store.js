@@ -7,11 +7,12 @@ const mutations = require('./mutations');
 const getters = require('./getters');
 const modules = require('./modules');
 const http = require('./http');
+const config = require('../config');
 
 Vue.use(Vuex);
 
 const store = new Vuex.Store({
-	strict: process.env.NODE_ENV !== 'production',
+	strict: config.ENV !== 'production',
 	state,
 	mutations,
 	actions,
@@ -19,12 +20,12 @@ const store = new Vuex.Store({
 	modules,
 });
 
-http.interceptors.request.use(config => {
+http.interceptors.request.use(conf => {
 	const token = store.state.user.token;
 	if (token !== null || typeof token === 'undefined') {
-		config.headers['Authorization'] = `Bearer ${token}`;
+		conf.headers['Authorization'] = `Bearer ${token}`;
 	}
-	return config;
+	return conf;
 }, error => {
 	return Promise.reject(error);
 });

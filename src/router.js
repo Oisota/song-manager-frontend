@@ -3,7 +3,7 @@ const VueRouter = require('vue-router');
 
 const config = require('./config');
 const store = require('./store');
-const pages = require('./app/pages');
+const pages = require('./pages');
 
 Vue.use(VueRouter);
 

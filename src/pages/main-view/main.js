@@ -1,4 +1,4 @@
-const SongTable = require('../../song-table');
+const SongTable = require('../../components/song-table');
 
 module.exports = {
 	name: 'main-view',
