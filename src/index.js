@@ -1,4 +1,4 @@
-const Vue = require('vue');
+import Vue from 'vue';
 
 const App = require('./components/app');
 const store = require('./store');
