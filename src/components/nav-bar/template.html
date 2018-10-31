@@ -5,11 +5,6 @@
 	</button>
 
 	<div class="collapse navbar-collapse" id="navbarSupportedContent">
-		<ul v-if="loggedIn" class="navbar-nav mr-auto">
-			<li class="nav-item">
-				<router-link class="nav-link" to="/">Songs</router-link>
-			</li>
-		</ul>
-		<button v-if="loggedIn" v-on:click="logout" class="btn btn-outline-secondary" type="button">Logout</button>
+		<button v-if="loggedIn" v-on:click="logout" class="btn btn-outline-secondary ml-auto" type="button">Logout</button>
 	</div>
 </nav>
