@@ -19,7 +19,7 @@ export default {
 		return {
 			beingEdited: false,
 			localSong: {}
-		}
+		};
 	},
 	created() {
 		this.localSong = Object.assign({}, this.song);
