@@ -1,9 +1,9 @@
 import LoginView from './login-view';
 import MainView from './main-view';
-import NotFound from './not-found';
+import NotFoundView from './not-found-view';
 
 export default {
 	LoginView,
 	MainView,
-	NotFound
+	NotFoundView
 };

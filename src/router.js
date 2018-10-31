@@ -26,7 +26,7 @@ const router = new VueRouter({
 		},
 		{
 			path: '*',
-			component: pages.NotFound,
+			component: pages.NotFoundView,
 			meta: {
 				title: 'Not Found',
 			}
@@ -43,6 +43,5 @@ router.beforeEach((to, from_, next) => {
 		next();
 	}
 });
-
 
 export default router;
