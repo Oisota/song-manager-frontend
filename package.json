@@ -3,12 +3,11 @@
 	"version": "0.1.0",
 	"description": "Manage set lists",
 	"repository": "https://github.com/Oisota/song-manager-frontend",
-	"main": "index.js",
+	"main": "./src/index.js",
 	"scripts": {
-		"start": "npm run lint && webpack-dev-server --open",
+		"start": "npm run lint && webpack-dev-server --config webpack.dev.js",
 		"build": "npm run lint && webpack --config=webpack.prod.js",
-		"watch": "webpack --watch",
-		"lint": "eslint 'src/*/**.js'",
+		"lint": "eslint '*.js' 'src/*/**.js'",
 		"test": "echo \"Error: no test specified\" && exit 1"
 	},
 	"keywords": [
@@ -21,6 +20,9 @@
 	"author": "Derek Morey",
 	"license": "GPL-3.0",
 	"devDependencies": {
+		"@babel/core": "^7.1.2",
+		"@babel/preset-env": "^7.1.0",
+		"babel-loader": "^8.0.4",
 		"clean-webpack-plugin": "^0.1.19",
 		"css-loader": "^1.0.0",
 		"eslint": "^4.19.1",
