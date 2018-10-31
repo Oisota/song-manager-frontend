@@ -1,9 +1,9 @@
-const Vue = require('vue');
+import Vue from 'vue';
 
-const App = require('./components/app');
-const store = require('./store');
-const router = require('./router');
-const config = require('./config');
+import App from './components/app';
+import store from './store';
+import router from './router';
+import config from './config';
 
 store.commit('loadUser');
 

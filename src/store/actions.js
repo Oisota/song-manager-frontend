@@ -1,6 +1,6 @@
-const http = require('./http');
+import http from './http';
 
-exports.login = (context, payload) => {
+export const login = (context, payload) => {
 	return new Promise((resolve, reject) => {
 		http.post('/auth/login', {
 			email: payload.email,
@@ -18,7 +18,7 @@ exports.login = (context, payload) => {
 	});
 };
 
-exports.createAlert = (context, payload) => {
+export const createAlert = (context, payload) => {
 	const a = {
 		title: payload.title || '',
 		text: payload.text || '',
@@ -34,7 +34,7 @@ exports.createAlert = (context, payload) => {
 	}
 };
 
-exports.register = (context, payload) => {
+export const register = (context, payload) => {
 	return new Promise((resolve, reject) => {
 		http.post('/auth/register', {
 			email: payload.email,
@@ -51,6 +51,6 @@ exports.register = (context, payload) => {
 	});
 };
 
-exports.addAlert = (context, payload) => {
+export const addAlert = (context, payload) => {
 	context.commit('addAlert', payload);
 };

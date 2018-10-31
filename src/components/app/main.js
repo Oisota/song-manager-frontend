@@ -1,7 +1,7 @@
-const NavBar = require('../nav-bar');
-const AlertBox = require('../alert-box');
+import NavBar from '../nav-bar';
+import AlertBox from '../alert-box';
 
-module.exports = {
+export default {
 	name: 'app',
 	components: {
 		'nav-bar': NavBar,

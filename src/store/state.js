@@ -1,4 +1,4 @@
-module.exports = {
+export default {
 	user: {
 		token: null,
 		id: null,

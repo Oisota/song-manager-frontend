@@ -1,13 +1,13 @@
-const Vue = require('vue');
-const Vuex = require('vuex');
+import Vue from 'vue';
+import Vuex from 'vuex';
 
-const state = require('./state');
-const actions = require('./actions');
-const mutations = require('./mutations');
-const getters = require('./getters');
-const modules = require('./modules');
-const http = require('./http');
-const config = require('../config');
+import * as state from './state';
+import * as actions from './actions';
+import * as mutations from './mutations';
+import * as getters from './getters';
+import modules from './modules';
+import http from './http';
+import config from '../config';
 
 Vue.use(Vuex);
 
@@ -38,4 +38,4 @@ http.interceptors.response.use(response => {
 });
 */
 
-module.exports = store;
+export default store;

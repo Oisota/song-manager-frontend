@@ -1,9 +1,9 @@
-const Vue = require('vue');
-const VueRouter = require('vue-router');
+import Vue from 'vue';
+import VueRouter from 'vue-router';
 
-const config = require('./config');
-const store = require('./store');
-const pages = require('./pages');
+import config from './config';
+import store from './store';
+import pages from './pages';
 
 Vue.use(VueRouter);
 
@@ -45,4 +45,4 @@ router.beforeEach((to, from_, next) => {
 });
 
 
-module.exports = router;
+export default router;

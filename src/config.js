@@ -1,12 +1,16 @@
 /* eslint no-process-env: 0 */
+const config = {};
+
 switch (process.env.NODE_ENV) {
 	case 'production':
-		exports.ENV = 'production';
-		exports.HISTORY_MODE = 'history';
-		exports.API_URL = window.location.origin + '/api';
+		config.ENV = 'production';
+		config.HISTORY_MODE = 'history';
+		config.API_URL = window.location.origin + '/api';
 		break;
 	default:
-		exports.ENV = 'development';
-		exports.HISTORY_MODE = 'hash';
-		exports.API_URL = 'http://localhost:6505/api';
+		config.ENV = 'development';
+		config.HISTORY_MODE = 'hash';
+		config.API_URL = 'http://localhost:6505/api';
 }
+
+export default config;

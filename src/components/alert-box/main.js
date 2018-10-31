@@ -1,4 +1,4 @@
-module.exports = {
+export default {
 	name: 'alert-box',
 	computed: {
 		alerts() {

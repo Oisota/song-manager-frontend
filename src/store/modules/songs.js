@@ -1,12 +1,12 @@
-const http = require('../http');
+import http from '../http';
 
-exports.namespaced = true;
+export const namespaced = true;
 
-exports.state = {
+export const state = {
 	songs: [],
 };
 
-exports.actions = {
+export const actions = {
 	loadSongs(context) {
 		return new Promise((resolve, reject) => {
 			http.get(`/users/${context.state.user.id}/songs`)
@@ -56,7 +56,7 @@ exports.actions = {
 	},
 };
 
-exports.mutations = {
+export const mutations = {
 	loadSongs(state, songs) {
 		state.songs = songs;
 	},

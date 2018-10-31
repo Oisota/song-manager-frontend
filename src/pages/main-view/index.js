@@ -1,1 +1,1 @@
-module.exports = require('./component.vue');
+export { default } from './component.vue';

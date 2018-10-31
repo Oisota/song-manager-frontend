@@ -1,4 +1,4 @@
-module.exports = {
+export default {
 	name: 'nav-bar',
 	computed: {
 		loggedIn() {

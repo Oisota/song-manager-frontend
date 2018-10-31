@@ -1,5 +1,5 @@
-const axios = require('axios');
-const config = require('../config');
+import axios from 'axios';
+import config from '../config';
 
 const http = axios.create({
 	baseURL: config.API_URL,
@@ -10,4 +10,4 @@ const http = axios.create({
 	}
 });
 
-module.exports = http;
+export default http;

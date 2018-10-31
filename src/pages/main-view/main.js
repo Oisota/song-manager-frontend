@@ -1,6 +1,6 @@
-const SongTable = require('../../components/song-table');
+import SongTable from '../../components/song-table';
 
-module.exports = {
+export default {
 	name: 'main-view',
 	components: {
 		'song-table': SongTable,

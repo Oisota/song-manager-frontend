@@ -1,6 +1,6 @@
-const LengthInput = require('../../length-input');
+import LengthInput from '../../length-input';
 
-module.exports = {
+export default {
 	name: 'song-row',
 	props: {
 		song: {

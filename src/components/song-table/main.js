@@ -1,7 +1,7 @@
-const SongRow = require('./song-row');
-const LengthInput = require('../length-input');
+import SongRow from './song-row';
+import LengthInput from '../length-input';
 
-module.exports = {
+export default {
 	name: 'song-table',
 	components: {
 		'song-row': SongRow,
