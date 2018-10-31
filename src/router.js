@@ -1,14 +1,13 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 
-import config from './config';
 import store from './store';
 import pages from './pages';
 
 Vue.use(VueRouter);
 
 const router = new VueRouter({
-	mode: config.historyMode,
+	mode: 'history',
 	routes: [
 		{
 			path: '/',
