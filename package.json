@@ -5,9 +5,8 @@
 	"repository": "https://github.com/Oisota/song-manager-frontend",
 	"main": "./src/index.js",
 	"scripts": {
-		"start": "npm run lint && webpack-dev-server --config webpack.dev.js",
-		"build": "npm run lint && webpack --config=webpack.prod.js",
-		"lint": "eslint '*.js' 'src/*/**.js'",
+		"start": "webpack-dev-server --config webpack.dev.js",
+		"build": "webpack --config=webpack.prod.js",
 		"test": "echo \"Error: no test specified\" && exit 1"
 	},
 	"keywords": [
@@ -25,7 +24,8 @@
 		"babel-loader": "^8.0.4",
 		"clean-webpack-plugin": "^0.1.19",
 		"css-loader": "^1.0.0",
-		"eslint": "^4.19.1",
+		"eslint": "^5.8.0",
+		"eslint-loader": "^2.1.1",
 		"html-webpack-plugin": "^3.2.0",
 		"vue-loader": "^15.4.2",
 		"vue-template-compiler": "^2.5.17",
