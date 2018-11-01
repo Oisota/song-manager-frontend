@@ -3,12 +3,26 @@ const path = require('path');
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
+const webpack = require('webpack')
 
 module.exports = {
 	entry: './src/index.js',
 	output: {
 		path: path.resolve(__dirname, 'dist'),
 		filename: '[name].[contenthash].js',
+		publicPath: '/',
+	},
+	optimization: {
+		runtimeChunk: 'single',
+		splitChunks: {
+			cacheGroups: {
+				vendor: {
+					test: /[\\/]node_modules[\\/]/,
+					name: 'vendor',
+					chunks: 'all',
+				}
+			}
+		}
 	},
 	module: {
 		rules: [
@@ -48,5 +62,6 @@ module.exports = {
 			title: 'Song Manager',
 			template: './src/html/index.html',
 		}),
+		new webpack.HashedModuleIdsPlugin(),
 	],
 };
