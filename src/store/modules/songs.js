@@ -6,22 +6,30 @@ export const state = {
 	songs: [],
 };
 
+export const mutations = {
+	load(state, songs) {
+		state.songs = songs;
+	},
+	updateSong(state, payload) {
+		state.songs.splice(payload.index, 1, payload.song);
+	},
+	addSong(state, payload) {
+		state.songs.push(payload.song);
+	},
+	deleteSong(state, payload) {
+		state.songs.splice(payload.index, 1);
+	},
+};
+
 export const actions = {
-	loadSongs(context) {
-		return new Promise((resolve, reject) => {
-			http.get(`/users/${context.state.user.id}/songs`)
-				.then(resp => {
-					if (resp.status === 200) {
-						context.commit('loadSongs', resp.data);
-						resolve(resp);
-					} else {
-						reject(resp);
-					}
-				})
-				.catch(err => {
-					reject(err);
-				});
-		});
+	load(context) {
+		return http.get(`/users/${context.rootState.user.id}/songs`)
+			.then(resp => {
+				context.commit('load', resp.data);
+			})
+			.catch(err => {
+				console.log(err);
+			});
 	},
 	saveSong(context, payload) {
 		http.put(`/users/${context.state.user.id}/songs/${payload.song.id}`, payload.song)
@@ -53,20 +61,5 @@ export const actions = {
 			.catch(err => {
 				console.log(err);
 			});
-	},
-};
-
-export const mutations = {
-	loadSongs(state, songs) {
-		state.songs = songs;
-	},
-	updateSong(state, payload) {
-		state.songs.splice(payload.index, 1, payload.song);
-	},
-	addSong(state, payload) {
-		state.songs.push(payload.song);
-	},
-	deleteSong(state, payload) {
-		state.songs.splice(payload.index, 1);
 	},
 };

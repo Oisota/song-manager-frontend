@@ -18,6 +18,17 @@ export const login = (context, payload) => {
 	});
 };
 
+export const loadUser = (context) => {
+	context.commit('loadUser');
+	return http.get('/me')
+		.then(resp => {
+			context.commit('setUserInfo', resp.data);
+		})
+		.catch(err => {
+			console.log(err);
+		});
+};
+
 export const createAlert = (context, payload) => {
 	const a = {
 		title: payload.title || '',

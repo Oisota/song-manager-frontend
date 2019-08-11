@@ -5,8 +5,11 @@ export const loadUser = (state) => {
 	}
 	const user = JSON.parse(user_str);
 	state.user.token = user.token;
-	state.user.role = user.role;
-	state.user.id = user.id;
+};
+
+export const setUserInfo = (state, payload) => {
+	state.user.id = payload.id;
+	state.user.role = payload.role;
 };
 
 export const login = (state, payload) => {

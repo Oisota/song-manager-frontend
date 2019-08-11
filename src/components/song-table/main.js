@@ -1,12 +1,5 @@
-import SongRow from './song-row';
-import LengthInput from '../length-input';
-
 export default {
 	name: 'song-table',
-	components: {
-		'song-row': SongRow,
-		'length-input': LengthInput,
-	},
 	data() {
 		return {
 			beingAdded: false,
@@ -21,11 +14,11 @@ export default {
 		};
 	},
 	created() {
-		this.$store.dispatch('loadSongs');
+		this.$store.dispatch('songs/load');
 	},
 	computed: {
 		songs() {
-			return this.$store.state.songs;
+			return this.$store.state.songs.songs;
 		}
 	},
 	methods: {
