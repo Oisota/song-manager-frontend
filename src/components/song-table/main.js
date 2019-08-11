@@ -22,13 +22,7 @@ export default {
 		}
 	},
 	methods: {
-		addSongMode() {
-			this.beingAdded = true;
-			this.$nextTick(function () {
-				this.$refs.songName.focus();
-			});
-		},
-		add() {
+		addSong() {
 			this.$store.dispatch('createSong', this.newSong)
 				.then(() => {
 					this.cancel();
