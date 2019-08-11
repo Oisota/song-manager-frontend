@@ -1,4 +1,5 @@
 import Vue from 'vue';
+import 'bootstrap';
 
 import App from './components/app';
 import store from './store';

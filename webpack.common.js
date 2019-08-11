@@ -24,6 +24,11 @@ module.exports = {
 			}
 		}
 	},
+	resolve: {
+		alias: {
+			'jquery': 'jquery/dist/jquery.slim.js',
+		}
+	},
 	module: {
 		rules: [
 			{
@@ -53,6 +58,14 @@ module.exports = {
 					'css-loader'
 				]
 			},
+			{
+				test: /\.scss$/,
+				use: [
+					'vue-style-loader',
+					'css-loader',
+					'sass-loader'
+				]
+			}
 		]
 	},
 	plugins: [
