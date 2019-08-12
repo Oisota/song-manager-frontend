@@ -1,10 +1,15 @@
+import BSModal from '../bs-modal';
+
 export default {
 	name: 'song-table',
+	components: {
+		'bs-modal': BSModal,
+	},
 	data() {
 		return {
 			beingAdded: false,
 			searchText: '',
-			newSong: {
+			song: {
 				name: '',
 				artist: '',
 				album: '',
@@ -23,18 +28,18 @@ export default {
 	},
 	methods: {
 		addSong() {
-			this.$store.dispatch('createSong', this.newSong)
+			this.$store.dispatch('createSong', this.song)
 				.then(() => {
-					this.cancel();
+					this.resetSong();
 				});
 		},
-		cancel() {
+		resetSong() {
 			this.beingAdded = false;
-			this.newSong.name = '';
-			this.newSong.artist = '';
-			this.newSong.album = '';
-			this.newSong.genre = '';
-			this.newSong.length = 0;
+			this.song.name = '';
+			this.song.artist = '';
+			this.song.album = '';
+			this.song.genre = '';
+			this.song.length = 0;
 		},
 	}
 };
