@@ -1,32 +1,31 @@
 import http from './http';
 
-export const login = (context, payload) => {
-	return new Promise((resolve, reject) => {
-		http.post('/auth/login', {
+export const login = async (context, payload) => {
+	let resp = null;
+	try {
+		resp = await http.post('/auth/login', {
 			email: payload.email,
 			password: payload.password
-		}).then(resp => {
-			if (resp.status === 200) {
-				context.commit('login', resp.data);
-				resolve(resp);
-			} else {
-				reject(resp);
-			}
-		}).catch(err => {
-			reject(err);
 		});
-	});
+	} catch (err) {
+		console.log(err);
+		return;
+	}
+	context.commit('login', resp.data);
+	return resp;
 };
 
-export const loadUser = (context) => {
+export const loadUser = async (context) => {
 	context.commit('loadUser');
-	return http.get('/me')
-		.then(resp => {
-			context.commit('setUserInfo', resp.data);
-		})
-		.catch(err => {
-			console.log(err);
-		});
+	let resp = null;
+	try {
+		resp = await http.get('/me');
+	} catch (err) {
+		console.log(err);
+		return;
+	}
+	context.commit('setUserInfo', resp.data);
+	return resp;
 };
 
 export const createAlert = (context, payload) => {
@@ -45,21 +44,18 @@ export const createAlert = (context, payload) => {
 	}
 };
 
-export const register = (context, payload) => {
-	return new Promise((resolve, reject) => {
-		http.post('/auth/register', {
+export const register = async (context, payload) => {
+	let resp = null;
+	try {
+		resp = await http.post('/auth/register', {
 			email: payload.email,
 			password: payload.password
-		}).then(resp => {
-			if (resp.status === 200) {
-				resolve(resp);
-			} else {
-				reject(resp);
-			}
-		}).catch(err => {
-			reject(err);
 		});
-	});
+	} catch (err) {
+		console.log(err);
+		return;
+	}
+	return resp;
 };
 
 export const addAlert = (context, payload) => {
