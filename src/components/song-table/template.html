@@ -4,7 +4,7 @@
 		<button class="btn btn-primary" type="button" data-toggle="modal" data-target="#addSongModal">Add Song</button>
 	</div>
 	<div class="table-responsive">
-		<table class="table table-bordered">
+		<table class="table table-bordered table-hover">
 			<thead class="thead-dark">
 				<tr>
 					<th>Song</th>
@@ -15,7 +15,7 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr v-for="song in songs">
+				<tr v-for="(song, index) in songs" v-bind:class="song.cls" v-on:click="setSelected(index)">
 					<td>{{song.name}}</td>
 					<td>{{song.artist}}</td>
 					<td>{{song.album}}</td>

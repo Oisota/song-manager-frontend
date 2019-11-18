@@ -9,6 +9,7 @@ export default {
 		return {
 			beingAdded: false,
 			searchText: '',
+			selectedIndex: -1,
 			song: {
 				name: '',
 				artist: '',
@@ -23,7 +24,12 @@ export default {
 	},
 	computed: {
 		songs() {
-			return this.$store.state.songs.songs;
+			return this.$store.state.songs.songs
+				.map((s, i) => {
+					const song = Object.assign({}, s);
+					song.cls = this.selectedIndex === i ? 'bg-light' : '';
+					return song;
+				});
 		}
 	},
 	methods: {
@@ -40,6 +46,13 @@ export default {
 			this.song.album = '';
 			this.song.genre = '';
 			this.song.length = 0;
+		},
+		setSelected(index) {
+			if (this.selectedIndex === index) {
+				this.selectedIndex = -1;
+			} else {
+				this.selectedIndex = index;
+			}
 		},
 	}
 };
