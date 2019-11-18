@@ -22,44 +22,47 @@ export const mutations = {
 };
 
 export const actions = {
-	load(context) {
-		return http.get(`/users/${context.rootState.user.id}/songs`)
-			.then(resp => {
-				context.commit('load', resp.data);
-			})
-			.catch(err => {
-				console.log(err);
-			});
+	async load(context) {
+		let resp = null;
+		try {
+			resp = await http.get(`/users/${context.rootState.user.id}/songs`);
+		} catch (err) {
+			console.log(err);
+		}
+		context.commit('load', resp.data);
+		return resp;
 	},
-	saveSong(context, payload) {
-		http.put(`/users/${context.state.user.id}/songs/${payload.song.id}`, payload.song)
-			.then(() => {
-				context.commit('updateSong', payload);
-			})
-			.catch(err => {
-				console.log(err);
-			});
+	async saveSong(context, payload) {
+		let resp = null;
+		try {
+			resp = await http.put(`/users/${context.state.user.id}/songs/${payload.song.id}`, payload.song);
+		} catch (err) {
+			console.log(err);
+		}
+		context.commit('updateSong', payload);
+		return resp;
 	},
-	createSong(context, song) {
-		console.log(song);
-		http.post(`/users/${context.state.user.id}/songs`, song)
-			.then(res => {
-				const s = Object.assign(song, res.data);
-				context.commit('addSong', {
-					song: s,
-				});
-			})
-			.catch(err => {
-				console.log(err);
-			});
+	async create(context, payload) {
+		let resp = null;
+		try {
+			resp = await http.post(`/users/${context.state.user.id}/songs`, payload);
+		} catch (err) {
+			console.log(err);
+		}
+		const s = Object.assign(payload, resp.data);
+		context.commit('addSong', {
+			song: s,
+		});
+		return s;
 	},
-	deleteSong(context, payload) {
-		http.delete(`/users/${context.state.user.id}/songs/${payload.id}`)
-			.then(() => {
-				context.commit('deleteSong', payload);
-			})
-			.catch(err => {
-				console.log(err);
-			});
+	async deleteSong(context, payload) {
+		let resp = null;
+		try {
+			resp = await http.delete(`/users/${context.state.user.id}/songs/${payload.id}`);
+		} catch (err) {
+			console.log(err);
+		}
+		context.commit('deleteSong', payload);
+		return resp;
 	},
 };
