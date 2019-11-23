@@ -1,8 +1,0 @@
-<div class="alert-container">
-	<div v-for="(alert, index) in alerts" v-bind:class="alert.type" class="alert alert-dismissible fade show" role="alert">
-		<strong>{{alert.title}}</strong> {{alert.text}}
-		<button v-on:click="dismiss(index)" type="button" class="close"> <!-- NOTE remove data-dismiss -->
-			<span aria-hidden="true">&times;</span>
-		</button>
-	</div>
-</div>

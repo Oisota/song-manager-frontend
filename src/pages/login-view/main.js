@@ -25,19 +25,18 @@ export default {
 				email: this.registerEmail,
 				password: this.registerPassword,
 			}).then(() => {
-				this.$store.commit('addAlert', {
+				this.$notify({
 					title: 'Account Created',
-					message: 'An email will be sent once you are verified',
-					category: 'success'
+					text: 'An email will be sent once you are verified',
+					type: 'alert-success'
 				});
 			}).catch(() => {
-				this.$store.commit('addAlert', {
+				this.$notify({
 					title: 'Error',
-					message: 'Account not created',
-					category: 'danger'
+					text: 'Account not created',
+					type: 'alert-danger'
 				});
 			});
-
-		}
-	}
+		},
+	},
 };

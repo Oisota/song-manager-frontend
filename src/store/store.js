@@ -30,12 +30,14 @@ http.interceptors.request.use(conf => {
 	return Promise.reject(error);
 });
 
-/*
 http.interceptors.response.use(response => {
 	return response;
 }, error => {
-	store.dispatch('addAlert', error);
+	Vue.notify({
+		title: 'Error',
+		text: error.message,
+		type: 'alert-danger',
+	});
 });
-*/
 
 export default store;

@@ -1,5 +1,8 @@
 import Vue from 'vue';
+import Notifications from 'vue-notification';
 import 'bootstrap';
+
+Vue.use(Notifications);
 
 import App from './components/app';
 import store from './store';
@@ -16,8 +19,7 @@ store.dispatch('loadUser')
 			store: store,
 			render: h => h(App)
 		});
+		if (config.ENV !== 'production') {
+			window.app = app;
+		}
 	});
-
-if (config.env !== 'production') {
-	window.app = app;
-}

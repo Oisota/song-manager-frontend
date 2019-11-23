@@ -4,6 +4,5 @@ export default {
 		id: null,
 		role: null,
 	},
-	alerts: [],
-	setlists: []
+	setlists: [],
 };

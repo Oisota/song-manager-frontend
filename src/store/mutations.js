@@ -25,11 +25,3 @@ export const logout = (state) => {
 	state.user.id = null;
 	localStorage.removeItem('user');
 };
-
-export const createAlert = (state, payload) => {
-	state.alerts.unshift(payload);
-};
-
-export const dismissAlert = (state, index) => {
-	state.alerts.splice(index, 1);
-};
