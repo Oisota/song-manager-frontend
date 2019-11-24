@@ -9,33 +9,35 @@ export default {
 		};
 	},
 	methods: {
-		login() {
-			this.$store.dispatch('login', {
-				email: this.email,
-				password: this.password,
-			}).then(() => {
-				this.$router.push('/');
-			}).catch(err => {
+		async login() {
+			try {
+				await this.$store.dispatch('login', {
+					email: this.email,
+					password: this.password,
+				});
+			} catch (err) {
 				console.log(err);
-			});
+			}
+			this.$router.push('/');
 
 		},
-		register() {
-			this.$store.dispatch('register', {
-				email: this.registerEmail,
-				password: this.registerPassword,
-			}).then(() => {
-				this.$notify({
-					title: 'Account Created',
-					text: 'An email will be sent once you are verified',
-					type: 'alert-success'
+		async register() {
+			try {
+				await this.$store.dispatch('register', {
+					email: this.registerEmail,
+					password: this.registerPassword,
 				});
-			}).catch(() => {
+			} catch (_) {
 				this.$notify({
 					title: 'Error',
 					text: 'Account not created',
 					type: 'alert-danger'
 				});
+			}
+			this.$notify({
+				title: 'Account Created',
+				text: 'An email will be sent once you are verified',
+				type: 'alert-success'
 			});
 		},
 	},

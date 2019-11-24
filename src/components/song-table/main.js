@@ -33,11 +33,9 @@ export default {
 		}
 	},
 	methods: {
-		addSong() {
-			this.$store.dispatch('createSong', this.song)
-				.then(() => {
-					this.resetSong();
-				});
+		async addSong() {
+			await this.$store.dispatch('createSong', this.song);
+			this.resetSong();
 		},
 		resetSong() {
 			this.beingAdded = false;
