@@ -8,7 +8,6 @@ export default {
 	data() {
 		return {
 			beingAdded: false,
-			searchText: '',
 			selectedIndex: -1,
 			song: {
 				name: '',
@@ -34,7 +33,7 @@ export default {
 	},
 	methods: {
 		async addSong() {
-			await this.$store.dispatch('createSong', this.song);
+			await this.$store.dispatch('songs/create', this.song);
 			this.resetSong();
 		},
 		resetSong() {
