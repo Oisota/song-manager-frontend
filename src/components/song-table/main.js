@@ -26,7 +26,7 @@ export default {
 			return this.$store.state.songs.songs
 				.map((s, i) => {
 					const song = Object.assign({}, s);
-					song.cls = this.selectedIndex === i ? 'bg-light' : '';
+					song.cls = this.selectedIndex === i ? 'table-active' : '';
 					return song;
 				});
 		}
