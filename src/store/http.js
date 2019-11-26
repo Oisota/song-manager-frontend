@@ -1,8 +1,7 @@
 import axios from 'axios';
-import config from '../config';
 
 const http = axios.create({
-	baseURL: config.API_URL,
+	baseURL: `${window.location.href}api/v1`,
 	timeout: 5000,
 	responseType: 'json',
 	headers: {
