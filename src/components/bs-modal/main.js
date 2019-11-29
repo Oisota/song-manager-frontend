@@ -9,24 +9,18 @@ export default {
 		},
 	},
 	mounted() {
-		const m = $(this.$el);
-		m.on('show.bs.modal', this.show);
-		m.on('shown.bs.modal', this.shown);
-		m.on('hide.bs.modal', this.hide);
-		m.on('hidden.bs.modal', this.hidden);
+		this.$modalEl = $(this.$el);
+		this.$modalEl.on('show.bs.modal', e => this.$emit('show', e));
+		this.$modalEl.on('shown.bs.modal', e => this.$emit('shown', e));
+		this.$modalEl.on('hide.bs.modal', e => this.$emit('hide', e));
+		this.$modalEl.on('hidden.bs.modal', e => this.$emit('hidden', e));
 	},
 	methods: {
-		show(e) {
-			this.$emit('show', e);
+		show() {
+			this.$modalEl.modal('show');
 		},
-		shown(e) {
-			this.$emit('shown', e);
-		},
-		hide(e) {
-			this.$emit('hide', e);
-		},
-		hidden(e) {
-			this.$emit('hidden', e);
+		hide() {
+			this.$modalEl.modal('hide');
 		},
 	}
 };
