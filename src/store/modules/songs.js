@@ -11,7 +11,7 @@ export const mutations = {
 		state.songs = songs;
 	},
 	update(state, payload) {
-		state.songs.splice(payload.index, 1, payload.song);
+		state.songs.splice(payload.index, 1, payload);
 	},
 	create(state, payload) {
 		state.songs.push(payload);
@@ -36,12 +36,13 @@ export const actions = {
 	async update(context, payload) {
 		let resp = null;
 		const userID = context.rootState.user.id;
+		const s = Object.assign({}, payload);
 		try {
-			resp = await http.put(`/users/${userID}/songs/${payload.song.id}`, payload.song);
+			resp = await http.put(`/users/${userID}/songs/${payload.id}`, payload);
 		} catch (err) {
 			console.log(err);
 		}
-		context.commit('update', payload);
+		context.commit('update', s);
 		return resp;
 	},
 	async create(context, payload) {
@@ -65,7 +66,7 @@ export const actions = {
 		} catch (err) {
 			console.log(err);
 		}
-		context.commit('deleteSong', payload);
+		context.commit('delete', payload);
 		return resp;
 	},
 };

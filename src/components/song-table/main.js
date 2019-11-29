@@ -7,14 +7,14 @@ export default {
 	},
 	data() {
 		return {
-			beingAdded: false,
-			selectedIndex: -1,
 			song: {
+				id: null,
 				name: '',
 				artist: '',
 				album: '',
 				genre: '',
 				length: 0,
+				index: null,
 			}
 		};
 	},
@@ -29,27 +29,47 @@ export default {
 					song.cls = this.selectedIndex === i ? 'table-active' : '';
 					return song;
 				});
-		}
+		},
+		addEditTitle() {
+			return this.song.id ? 'Edit Song' : 'Add Song';
+		},
 	},
 	methods: {
-		async addSong() {
+		saveSong() {
+			if (this.song.id) {
+				this.updateSong();
+			} else {
+				this.createSong();
+			}
+		},
+		async createSong() {
 			await this.$store.dispatch('songs/create', this.song);
 			this.resetSong();
 		},
+		updateSong() {
+			this.$store.dispatch('songs/update', this.song);
+		},
+		deleteSong() {
+			this.$store.dispatch('songs/delete', this.song);
+		},
+		edit(index) {
+			const song = this.songs[index];
+			this.song.id = song.id;
+			this.song.name = song.name;
+			this.song.artist = song.artist;
+			this.song.album = song.album;
+			this.song.genre = song.genre;
+			this.song.length = song.length;
+			this.song.index = index;
+		},
 		resetSong() {
-			this.beingAdded = false;
+			this.song.id = null,
 			this.song.name = '';
 			this.song.artist = '';
 			this.song.album = '';
 			this.song.genre = '';
 			this.song.length = 0;
-		},
-		setSelected(index) {
-			if (this.selectedIndex === index) {
-				this.selectedIndex = -1;
-			} else {
-				this.selectedIndex = index;
-			}
+			this.song.index = null;
 		},
 	}
 };
