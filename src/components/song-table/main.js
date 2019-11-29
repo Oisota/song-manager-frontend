@@ -93,5 +93,11 @@ export default {
 		cancelDelete() {
 			this.$refs.deleteModal.hide();
 		},
+		focusForm() {
+			this.$refs.songNameInput.focus(); // focus first form input
+		},
+		focusDeleteButton() {
+			this.$refs.deleteButton.focus(); // focus first form input
+		},
 	}
 };

@@ -33,12 +33,12 @@
 		</table>
 	</div>
 
-	<bs-modal ref="editModal" v-bind:title="addEditTitle" v-on:hidden="resetSong">
+	<bs-modal ref="editModal" v-bind:title="addEditTitle" v-on:shown="focusForm" v-on:hidden="resetSong">
 		<template v-slot:body>
-			<form>
+			<form v-on:keyup.enter="saveSong">
 				<div class="form-group">
 					<label for="name">Name</label>
-					<input v-model="song.name" class="form-control" type="text" name="name" id="name"/>
+					<input v-model="song.name" ref="songNameInput" class="form-control" type="text" name="name" id="name"/>
 				</div>
 				<div class="form-group">
 					<label for="artist">Artist</label>
@@ -64,13 +64,13 @@
 		</template>
 	</bs-modal>
 
-	<bs-modal ref="deleteModal" title="Delete Song?" v-on:hidden="resetSong">
+	<bs-modal ref="deleteModal" title="Delete Song?" v-on:shown="focusDeleteButton" v-on:hidden="resetSong">
 		<template v-slot:body>
-			<p>Are you sure you want to delete "{{song.name}}" ?</p>
+			<p v-on:keyup.enter="deleteSong">Are you sure you want to delete "{{song.name}}" ?</p>
 		</template>
 		<template v-slot:footer>
 			<button v-on:click="cancelDelete" class="btn btn-secondary" type="button">Cancel</button>
-			<button v-on:click="deleteSong" class="btn btn-danger" type="button">Delete</button>
+			<button v-on:click="deleteSong" ref="deleteButton" class="btn btn-danger" type="button">Delete</button>
 		</template>
 	</bs-modal>
 
