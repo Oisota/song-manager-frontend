@@ -19,7 +19,7 @@ export default {
 		};
 	},
 	created() {
-		this.$store.dispatch('songs/load');
+		this.loadSongs();
 	},
 	computed: {
 		songs() {
@@ -35,6 +35,21 @@ export default {
 		},
 	},
 	methods: {
+		loadSongs() {
+			this.$store.dispatch('songs/load');
+		},
+		async createSong() {
+			await this.$store.dispatch('songs/create', this.song);
+			this.$refs.editModal.hide();
+		},
+		async updateSong() {
+			await this.$store.dispatch('songs/update', this.song);
+			this.$refs.editModal.hide();
+		},
+		async deleteSong() {
+			await this.$store.dispatch('songs/delete', this.song);
+			this.$refs.deleteModal.hide();
+		},
 		saveSong() {
 			if (this.song.id) {
 				this.updateSong();
@@ -42,17 +57,18 @@ export default {
 				this.createSong();
 			}
 		},
-		async createSong() {
-			await this.$store.dispatch('songs/create', this.song);
-			this.resetSong();
-		},
-		updateSong() {
-			this.$store.dispatch('songs/update', this.song);
-		},
-		deleteSong() {
-			this.$store.dispatch('songs/delete', this.song);
+		add() {
+			this.$refs.editModal.show();
 		},
 		edit(index) {
+			this.setSong(index);
+			this.$refs.editModal.show();
+		},
+		remove(index) {
+			this.setSong(index);
+			this.$refs.deleteModal.show();
+		},
+		setSong(index) {
 			const song = this.songs[index];
 			this.song.id = song.id;
 			this.song.name = song.name;
@@ -70,6 +86,12 @@ export default {
 			this.song.genre = '';
 			this.song.length = 0;
 			this.song.index = null;
+		},
+		cancelEdit() {
+			this.$refs.editModal.hide();
+		},
+		cancelDelete() {
+			this.$refs.deleteModal.hide();
 		},
 	}
 };

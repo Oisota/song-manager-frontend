@@ -1,7 +1,7 @@
 <div>
 	<div class="d-flex justify-content-between bg-dark text-light p-2 rounded-top">
 		<h3>Songs</h3>
-		<button class="btn btn-success" type="button" data-toggle="modal" data-target="#addSongModal">Add Song</button>
+		<button v-on:click="add" class="btn btn-success" type="button">Add Song</button>
 	</div>
 	<div class="table-responsive">
 		<table class="table table-bordered table-hover">
@@ -24,8 +24,8 @@
 					<td>{{song.length}}</td>
 					<td>
 						<div class="btn-group">
-							<button v-on:click="edit(index)" class="btn btn-warning" type="button" data-toggle="modal" data-target="#addSongModal">edit</button>
-							<button v-on:click="edit(index)" class="btn btn-danger" type="button" data-toggle="modal" data-target="#deleteSongModal">delete</button>
+							<button v-on:click="edit(index)" class="btn btn-warning" type="button">edit</button>
+							<button v-on:click="remove(index)" class="btn btn-danger" type="button">delete</button>
 						</div>
 					</td>
 				</tr>
@@ -33,7 +33,7 @@
 		</table>
 	</div>
 
-	<bs-modal id="addSongModal" v-bind:title="addEditTitle" v-on:hidden="resetSong">
+	<bs-modal ref="editModal" v-bind:title="addEditTitle" v-on:hidden="resetSong">
 		<template v-slot:body>
 			<form>
 				<div class="form-group">
@@ -59,18 +59,18 @@
 			</form>
 		</template>
 		<template v-slot:footer>
-			<button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-			<button v-on:click="saveSong" class="btn btn-primary" type="button" data-dismiss="modal">Save</button>
+			<button v-on:click="cancelEdit" class="btn btn-secondary" type="button">Cancel</button>
+			<button v-on:click="saveSong" class="btn btn-primary" type="button">Save</button>
 		</template>
 	</bs-modal>
 
-	<bs-modal id="deleteSongModal" title="Delete Song?" v-on:hidden="resetSong">
+	<bs-modal ref="deleteModal" title="Delete Song?" v-on:hidden="resetSong">
 		<template v-slot:body>
 			<p>Are you sure you want to delete "{{song.name}}" ?</p>
 		</template>
 		<template v-slot:footer>
-			<button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-			<button v-on:click="deleteSong" class="btn btn-danger" type="button" data-dismiss="modal">Delete</button>
+			<button v-on:click="cancelDelete" class="btn btn-secondary" type="button">Cancel</button>
+			<button v-on:click="deleteSong" class="btn btn-danger" type="button">Delete</button>
 		</template>
 	</bs-modal>
 
