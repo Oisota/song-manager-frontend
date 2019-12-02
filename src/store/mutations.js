@@ -1,9 +1,9 @@
 export const loadUser = (state) => {
-	const user_str = localStorage.getItem('user');
-	if (user_str === null) {
+	const userStr = localStorage.getItem('user');
+	if (userStr === null) {
 		return;
 	}
-	const user = JSON.parse(user_str);
+	const user = JSON.parse(userStr);
 	state.user.token = user.token;
 };
 
