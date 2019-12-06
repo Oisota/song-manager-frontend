@@ -26,7 +26,7 @@ export const actions = {
 		let resp = null;
 		const userID = context.rootState.user.id;
 		try {
-			resp = await http.get(`/users/${userID}/songs`);
+			resp = await http.get(`users/${userID}/songs`);
 		} catch (err) {
 			console.log(err);
 		}
@@ -38,7 +38,9 @@ export const actions = {
 		const userID = context.rootState.user.id;
 		const s = Object.assign({}, payload);
 		try {
-			resp = await http.put(`/users/${userID}/songs/${payload.id}`, payload);
+			resp = await http.put(`users/${userID}/songs/${payload.id}`, {
+				json: payload,
+			});
 		} catch (err) {
 			console.log(err);
 		}
@@ -49,7 +51,9 @@ export const actions = {
 		let resp = null;
 		const userID = context.rootState.user.id;
 		try {
-			resp = await http.post(`/users/${userID}/songs`, payload);
+			resp = await http.post(`users/${userID}/songs`, {
+				json: payload,
+			});
 		} catch (err) {
 			console.log(err);
 		}
@@ -62,7 +66,7 @@ export const actions = {
 		let resp = null;
 		const userID = context.rootState.user.id;
 		try {
-			resp = await http.delete(`/users/${userID}/songs/${payload.id}`);
+			resp = await http.delete(`users/${userID}/songs/${payload.id}`);
 		} catch (err) {
 			console.log(err);
 		}

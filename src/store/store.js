@@ -6,7 +6,6 @@ import * as actions from './actions';
 import * as mutations from './mutations';
 import * as getters from './getters';
 import modules from './modules';
-import http from './http';
 import config from '../config';
 
 Vue.use(Vuex);
@@ -18,26 +17,6 @@ const store = new Vuex.Store({
 	actions,
 	getters,
 	modules,
-});
-
-http.interceptors.request.use(conf => {
-	const token = store.state.user.token;
-	if (token !== null || typeof token === 'undefined') {
-		conf.headers['Authorization'] = `Bearer ${token}`;
-	}
-	return conf;
-}, error => {
-	return Promise.reject(error);
-});
-
-http.interceptors.response.use(response => {
-	return response;
-}, error => {
-	Vue.notify({
-		title: 'Error',
-		text: error.message,
-		type: 'alert-danger',
-	});
 });
 
 export default store;

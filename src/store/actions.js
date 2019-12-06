@@ -3,9 +3,11 @@ import http from './http';
 export const login = async (context, payload) => {
 	let resp = null;
 	try {
-		resp = await http.post('/auth/login', {
-			email: payload.email,
-			password: payload.password
+		resp = await http.post('auth/login', {
+			json: {
+				email: payload.email,
+				password: payload.password
+			}
 		});
 	} catch (err) {
 		console.log(err);
@@ -19,7 +21,7 @@ export const loadUser = async (context) => {
 	context.commit('loadUser');
 	let resp = null;
 	try {
-		resp = await http.get('/me');
+		resp = await http.get('me');
 	} catch (err) {
 		console.log(err);
 		return;
@@ -31,9 +33,11 @@ export const loadUser = async (context) => {
 export const register = async (context, payload) => {
 	let resp = null;
 	try {
-		resp = await http.post('/auth/register', {
-			email: payload.email,
-			password: payload.password
+		resp = await http.post('auth/register', {
+			json: {
+				email: payload.email,
+				password: payload.password
+			}
 		});
 	} catch (err) {
 		console.log(err);
