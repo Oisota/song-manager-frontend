@@ -15,11 +15,11 @@ export default {
 					email: this.email,
 					password: this.password,
 				});
+				await this.$store.dispatch('loadUser');
 			} catch (err) {
 				console.log(err);
 			}
 			this.$router.push('/');
-
 		},
 		async register() {
 			try {
