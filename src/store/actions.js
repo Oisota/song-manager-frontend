@@ -20,13 +20,15 @@ export const login = async (context, payload) => {
 export const loadUser = async (context) => {
 	context.commit('loadUser');
 	let resp = null;
+	let data = null;
 	try {
 		resp = await http.get('me');
+		data = await resp.json();
 	} catch (err) {
 		console.log(err);
 		return;
 	}
-	context.commit('setUserInfo', resp.data);
+	context.commit('setUserInfo', data);
 	return resp;
 };
 

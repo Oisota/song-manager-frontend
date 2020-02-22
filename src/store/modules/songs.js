@@ -24,13 +24,15 @@ export const mutations = {
 export const actions = {
 	async load(context) {
 		let resp = null;
+		let data = null;
 		const userID = context.rootState.user.id;
 		try {
 			resp = await http.get(`users/${userID}/songs`);
+			data = await resp.json();
 		} catch (err) {
-			console.log(err);
+			return console.log(err);
 		}
-		context.commit('load', resp.data);
+		context.commit('load', data);
 		return resp;
 	},
 	async update(context, payload) {
