@@ -2,6 +2,7 @@ import http from './http';
 
 export const login = async (context, payload) => {
 	let resp = null;
+	let data = null;
 	try {
 		resp = await http.post('auth/login', {
 			json: {
@@ -9,11 +10,12 @@ export const login = async (context, payload) => {
 				password: payload.password
 			}
 		});
+		data = await resp.json();
 	} catch (err) {
 		console.log(err);
 		return;
 	}
-	context.commit('login', resp.data);
+	context.commit('login', data);
 	return resp;
 };
 

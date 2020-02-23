@@ -51,15 +51,17 @@ export const actions = {
 	},
 	async create(context, payload) {
 		let resp = null;
+		let data = null;
 		const userID = context.rootState.user.id;
 		try {
 			resp = await http.post(`users/${userID}/songs`, {
 				json: payload,
 			});
+			data = await resp.json();
 		} catch (err) {
 			console.log(err);
 		}
-		payload.id = resp.data.id;
+		payload.id = data.id;
 		const s = Object.assign({}, payload);
 		context.commit('create', s);
 		return s;
