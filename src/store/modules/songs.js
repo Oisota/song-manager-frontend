@@ -1,4 +1,4 @@
-import http from '../http';
+import http from 'App/http';
 
 export const namespaced = true;
 

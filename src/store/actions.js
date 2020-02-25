@@ -1,4 +1,4 @@
-import http from './http';
+import http from 'App/http';
 
 export const login = async (context, payload) => {
 	let resp = null;
