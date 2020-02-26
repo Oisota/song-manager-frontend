@@ -16,7 +16,7 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr v-for="(song, index) in songs">
+				<tr v-for="(song, index) in songs" v-on:dblclick="edit(index)">
 					<td class="align-middle">{{song.name}}</td>
 					<td class="align-middle">{{song.artist}}</td>
 					<td class="align-middle">{{song.album}}</td>
