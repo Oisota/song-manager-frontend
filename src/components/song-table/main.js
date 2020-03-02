@@ -1,4 +1,4 @@
-import BSModal from '../bs-modal';
+import BSModal from 'Components/bs-modal';
 
 export default {
 	name: 'song-table',

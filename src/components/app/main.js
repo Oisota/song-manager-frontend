@@ -1,4 +1,4 @@
-import NavBar from '../nav-bar';
+import NavBar from 'Components/nav-bar';
 
 export default {
 	name: 'app',

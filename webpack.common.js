@@ -27,7 +27,8 @@ module.exports = {
 	resolve: {
 		alias: {
 			'jquery': 'jquery/dist/jquery.slim.js',
-			'App': path.resolve(__dirname, 'src/')
+			'App': path.resolve(__dirname, 'src/'),
+			'Components': path.resolve(__dirname, 'src/components'),
 		}
 	},
 	module: {
