@@ -9,12 +9,12 @@ export const loadUser = (state) => {
 
 export const setUserInfo = (state, payload) => {
 	state.user.id = payload.id;
-	state.user.role = payload.role;
+	state.user.role = payload.role.name;
 };
 
 export const login = (state, payload) => {
 	state.user.token = payload.token;
-	state.user.role = payload.role;
+	state.user.role = payload.role.name;
 	state.user.id = payload.id;
 	localStorage.setItem('user', JSON.stringify(state.user));
 };

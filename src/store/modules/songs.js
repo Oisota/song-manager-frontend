@@ -1,3 +1,4 @@
+import pick from 'lodash/pick';
 import http from 'App/http';
 
 export const namespaced = true;
@@ -28,7 +29,7 @@ export const actions = {
 		const userID = context.rootState.user.id;
 		try {
 			resp = await http.get(`users/${userID}/songs`);
-			data = await resp.json();
+			data = (await resp.json()).data;
 		} catch (err) {
 			return console.log(err);
 		}
@@ -39,9 +40,12 @@ export const actions = {
 		let resp = null;
 		const userID = context.rootState.user.id;
 		const s = Object.assign({}, payload);
+		const data = pick(payload, [
+			'name', 'artist', 'album', 'genre', 'length'
+		]);
 		try {
 			resp = await http.put(`users/${userID}/songs/${payload.id}`, {
-				json: payload,
+				json: data,
 			});
 		} catch (err) {
 			console.log(err);
@@ -57,7 +61,7 @@ export const actions = {
 			resp = await http.post(`users/${userID}/songs`, {
 				json: payload,
 			});
-			data = await resp.json();
+			data = (await resp.json()).data;
 		} catch (err) {
 			console.log(err);
 		}

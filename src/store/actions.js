@@ -10,7 +10,7 @@ export const login = async (context, payload) => {
 				password: payload.password
 			}
 		});
-		data = await resp.json();
+		data = (await resp.json()).data;
 	} catch (err) {
 		console.log(err);
 		return;
@@ -25,7 +25,7 @@ export const loadUser = async (context) => {
 	let data = null;
 	try {
 		resp = await http.get('me');
-		data = await resp.json();
+		data = (await resp.json()).data;
 	} catch (err) {
 		console.log(err);
 		return;
