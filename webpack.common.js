@@ -29,6 +29,7 @@ module.exports = {
 			'jquery': 'jquery/dist/jquery.slim.js',
 			'App': path.resolve(__dirname, 'src/'),
 			'Components': path.resolve(__dirname, 'src/components'),
+			'assets': path.resolve(__dirname, './assets'),
 		}
 	},
 	module: {
@@ -61,7 +62,18 @@ module.exports = {
 					'css-loader',
 					'sass-loader'
 				]
-			}
+			},
+			{
+				test: /\.(png|jpe?g|gif)$/i,
+				use: [
+					{
+						loader: 'file-loader',
+						options: {
+							outputPath: 'assets',
+						}
+					},
+				],
+			},
 		]
 	},
 	plugins: [
