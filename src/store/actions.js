@@ -21,6 +21,9 @@ export const login = async (context, payload) => {
 
 export const loadUser = async (context) => {
 	context.commit('loadUser');
+	if (!context.getters.userLoggedIn) {
+		return null;
+	}
 	let resp = null;
 	let data = null;
 	try {
