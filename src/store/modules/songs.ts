@@ -1,13 +1,30 @@
+import { MutationTree, ActionTree } from 'vuex';
 import pick from 'lodash/pick';
+import { ResponsePromise } from 'ky';
+
+import { RootState } from '../state';
 import http from 'App/http';
+
+interface Song {
+	id: number;
+	name: string;
+	artist: string;
+	album: string;
+	genre: string;
+	length: number;
+}
+
+export interface State {
+	songs: Array<Song>;
+}
 
 export const namespaced = true;
 
-export const state = {
+export const state: State = {
 	songs: [],
 };
 
-export const mutations = {
+export const mutations: MutationTree<State> = {
 	load(state, songs) {
 		state.songs = songs;
 	},
@@ -22,23 +39,25 @@ export const mutations = {
 	},
 };
 
-export const actions = {
-	async load(context) {
-		let resp = null;
-		let data = null;
-		const userID = context.rootState.user.id;
+export const actions: ActionTree<State, RootState> = {
+	async load(context): Promise<Response> {
+		let resp: ResponsePromise = Promise.reject('no response from server') as ResponsePromise;
+		const userID = context.rootState.user.user.id;
 		try {
 			resp = await http.get(`users/${userID}/songs`);
-			data = (await resp.json()).data;
 		} catch (err) {
-			return console.log(err);
+			console.log(err);
+			return resp;
 		}
-		context.commit('load', data);
+		const data: any = await resp.json();
+		if (data && data.data) {
+			context.commit('load', data.data);
+		}
 		return resp;
 	},
 	async update(context, payload) {
-		let resp = null;
-		const userID = context.rootState.user.id;
+		let resp: ResponsePromise = Promise.reject('no response from server') as ResponsePromise;
+		const userID = context.rootState.user.user.id;
 		const s = Object.assign({}, payload);
 		const data = pick(payload, [
 			'name', 'artist', 'album', 'genre', 'length'
@@ -54,17 +73,16 @@ export const actions = {
 		return resp;
 	},
 	async create(context, payload) {
-		let resp = null;
-		let data = null;
-		const userID = context.rootState.user.id;
+		let resp: ResponsePromise = Promise.reject('no response from server') as ResponsePromise;
+		const userID = context.rootState.user.user.id;
 		try {
 			resp = await http.post(`users/${userID}/songs`, {
 				json: payload,
 			});
-			data = (await resp.json()).data;
 		} catch (err) {
 			console.log(err);
 		}
+		const data = (await resp.json() as any).data;
 		payload.id = data.id;
 		const s = Object.assign({}, payload);
 		context.commit('create', s);
@@ -72,7 +90,7 @@ export const actions = {
 	},
 	async delete(context, payload) {
 		let resp = null;
-		const userID = context.rootState.user.id;
+		const userID = context.rootState.user.user.id;
 		try {
 			resp = await http.delete(`users/${userID}/songs/${payload.id}`);
 		} catch (err) {

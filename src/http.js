@@ -4,7 +4,7 @@ import ky from 'ky';
 import store from './store';
 
 function addAuth(req) {
-	const token = store.state.user.token;
+	const token = store.state.user.user.token;
 	if (token !== null || typeof token !== 'undefined') {
 		req.headers.set('Authorization', `Bearer ${token}`);
 	}

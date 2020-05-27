@@ -2,7 +2,7 @@ export default {
 	name: 'nav-bar',
 	computed: {
 		loggedIn() {
-			return this.$store.getters.userLoggedIn;
+			return this.$store.getters['user/loggedIn'];
 		}
 	},
 	methods: {

@@ -25,6 +25,7 @@ module.exports = {
 		}
 	},
 	resolve: {
+		extensions: ['.js', '.json', '.ts'],
 		alias: {
 			'jquery': 'jquery/dist/jquery.slim.js',
 			'App': path.resolve(__dirname, 'src/'),
@@ -45,6 +46,15 @@ module.exports = {
 				use: [
 					{
 						loader: 'eslint-loader'
+					}
+				]
+			},
+			{
+				test: /\.ts$/,
+				exclude: /node_modules/,
+				use: [
+					{
+						loader: 'ts-loader'
 					}
 				]
 			},

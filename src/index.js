@@ -14,7 +14,7 @@ import config from './config';
 
 	let app = null;
 
-	await store.dispatch('loadUser');
+	await store.dispatch('user/load');
 
 	app = new Vue({
 		el: '#app',
