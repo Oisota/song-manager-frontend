@@ -1,3 +1,5 @@
+import pick from 'lodash/pick';
+
 import BSModal from 'Components/bs-modal';
 
 export default {
@@ -39,11 +41,13 @@ export default {
 			this.$store.dispatch('songs/load');
 		},
 		async createSong() {
-			await this.$store.dispatch('songs/create', this.song);
+			const payload = pick(this.song, ['name', 'artist', 'album', 'genre', 'length']);
+			await this.$store.dispatch('songs/create', payload);
 			this.$refs.editModal.hide();
 		},
 		async updateSong() {
-			await this.$store.dispatch('songs/update', this.song);
+			const payload = pick(this.song, ['id', 'name', 'artist', 'album', 'genre', 'length']);
+			await this.$store.dispatch('songs/update', payload);
 			this.$refs.editModal.hide();
 		},
 		async deleteSong() {
