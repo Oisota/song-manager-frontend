@@ -1,5 +1,4 @@
 import { MutationTree, ActionTree, GetterTree } from 'vuex';
-import { ResponsePromise } from 'ky';
 
 import { RootState } from '../state';
 import http from 'App/http';
@@ -51,7 +50,7 @@ export const mutations: MutationTree<State> = {
 
 export const actions: ActionTree<State, RootState> = {
 	async login(context, payload) {
-		let resp: ResponsePromise = Promise.reject('no response from server') as ResponsePromise;
+		let resp = Response.error();
 		try {
 			resp = await http.post('auth/login', {
 				json: {
@@ -69,7 +68,7 @@ export const actions: ActionTree<State, RootState> = {
 	},
 	async load(context): Promise<Response> {
 		context.commit('load');
-		let resp: ResponsePromise = Promise.reject('no response from server') as ResponsePromise;
+		let resp = Response.error();
 		if (!context.getters.loggedIn) {
 			return resp;
 		}
@@ -84,7 +83,7 @@ export const actions: ActionTree<State, RootState> = {
 		return resp;
 	},
 	async register(_, payload): Promise<Response> {
-		let resp: ResponsePromise = Promise.reject('no response from server') as ResponsePromise;
+		let resp = Response.error();
 		try {
 			resp = await http.post('register', {
 				json: {

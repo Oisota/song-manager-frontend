@@ -41,7 +41,7 @@ export const mutations: MutationTree<State> = {
 
 export const actions: ActionTree<State, RootState> = {
 	async load(context): Promise<Response> {
-		let resp: ResponsePromise = Promise.reject('no response from server') as ResponsePromise;
+		let resp: Response = Response.error();
 		const userID = context.rootState.user.user.id;
 		try {
 			resp = await http.get(`users/${userID}/songs`);
@@ -56,7 +56,7 @@ export const actions: ActionTree<State, RootState> = {
 		return resp;
 	},
 	async update(context, payload) {
-		let resp: ResponsePromise = Promise.reject('no response from server') as ResponsePromise;
+		let resp = Response.error();
 		const userID = context.rootState.user.user.id;
 		const s = Object.assign({}, payload);
 		const data = pick(payload, [
@@ -73,7 +73,7 @@ export const actions: ActionTree<State, RootState> = {
 		return resp;
 	},
 	async create(context, payload) {
-		let resp: ResponsePromise = Promise.reject('no response from server') as ResponsePromise;
+		let resp = Response.error();
 		const userID = context.rootState.user.user.id;
 		try {
 			resp = await http.post(`users/${userID}/songs`, {
@@ -89,7 +89,7 @@ export const actions: ActionTree<State, RootState> = {
 		return s;
 	},
 	async delete(context, payload) {
-		let resp = null;
+		let resp = Response.error();
 		const userID = context.rootState.user.user.id;
 		try {
 			resp = await http.delete(`users/${userID}/songs/${payload.id}`);
