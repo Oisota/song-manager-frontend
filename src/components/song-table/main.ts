@@ -1,13 +1,28 @@
+import Vue from 'vue';
 import pick from 'lodash/pick';
 
 import BSModal from 'Components/bs-modal';
 
-export default {
+interface Song {
+	id: number | null;
+	name: string;
+	artist: string;
+	album: string;
+	genre: string;
+	length: number;
+	index: number | null;
+}
+
+interface Data {
+	song: Song;
+}
+
+export default Vue.extend({
 	name: 'song-table',
 	components: {
 		'bs-modal': BSModal,
 	},
-	data() {
+	data(): Data {
 		return {
 			song: {
 				id: null,
@@ -25,14 +40,9 @@ export default {
 	},
 	computed: {
 		songs() {
-			return this.$store.state.songs.songs
-				.map((s, i) => {
-					const song = Object.assign({}, s);
-					song.cls = this.selectedIndex === i ? 'table-active' : '';
-					return song;
-				});
+			return this.$store.state.songs.songs;
 		},
-		addEditTitle() {
+		addEditTitle(): string {
 			return this.song.id ? 'Edit Song' : 'Add Song';
 		},
 	},
@@ -43,16 +53,16 @@ export default {
 		async createSong() {
 			const payload = pick(this.song, ['name', 'artist', 'album', 'genre', 'length']);
 			await this.$store.dispatch('songs/create', payload);
-			this.$refs.editModal.hide();
+			(this.$refs.editModal as any).hide();
 		},
 		async updateSong() {
 			const payload = pick(this.song, ['id', 'name', 'artist', 'album', 'genre', 'length']);
 			await this.$store.dispatch('songs/update', payload);
-			this.$refs.editModal.hide();
+			(this.$refs.editModal as any).hide();
 		},
 		async deleteSong() {
 			await this.$store.dispatch('songs/delete', this.song);
-			this.$refs.deleteModal.hide();
+			(this.$refs.deleteModal as any).hide();
 		},
 		saveSong() {
 			if (this.song.id) {
@@ -62,17 +72,17 @@ export default {
 			}
 		},
 		add() {
-			this.$refs.editModal.show();
+			(this.$refs.editModal as any).show();
 		},
-		edit(index) {
+		edit(index: number) {
 			this.setSong(index);
-			this.$refs.editModal.show();
+			(this.$refs.editModal as any).show();
 		},
-		remove(index) {
+		remove(index: number) {
 			this.setSong(index);
-			this.$refs.deleteModal.show();
+			(this.$refs.deleteModal as any).show();
 		},
-		setSong(index) {
+		setSong(index: number) {
 			const song = this.songs[index];
 			this.song.id = song.id;
 			this.song.name = song.name;
@@ -92,16 +102,16 @@ export default {
 			this.song.index = null;
 		},
 		cancelEdit() {
-			this.$refs.editModal.hide();
+			(this.$refs.editModal as any).hide();
 		},
 		cancelDelete() {
-			this.$refs.deleteModal.hide();
+			(this.$refs.deleteModal as any).hide();
 		},
 		focusForm() {
-			this.$refs.songNameInput.focus(); // focus first form input
+			(this.$refs.songNameInput as HTMLElement).focus(); // focus first form input
 		},
 		focusDeleteButton() {
-			this.$refs.deleteButton.focus(); // focus first form input
+			(this.$refs.deleteButton as HTMLElement).focus(); // focus first form input
 		},
 	}
-};
+});
