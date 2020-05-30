@@ -1,4 +1,6 @@
-export default {
+import Vue from 'vue';
+
+export default Vue.extend({
 	name: 'nav-bar',
 	computed: {
 		loggedIn() {
@@ -11,4 +13,4 @@ export default {
 			this.$router.push('/login');
 		}
 	}
-};
+});
