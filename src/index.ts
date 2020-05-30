@@ -12,11 +12,9 @@ import config from './config';
 
 (async () => {
 
-	let app = null;
-
 	await store.dispatch('user/load');
 
-	app = new Vue({
+	const app = new Vue({
 		el: '#app',
 		router: router,
 		store: store,
@@ -24,7 +22,7 @@ import config from './config';
 	});
 
 	if (config.ENV !== 'production') {
-		window.app = app;
+		(window as any).app = app;
 	}
 
 })();
