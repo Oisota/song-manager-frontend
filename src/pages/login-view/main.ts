@@ -1,4 +1,6 @@
-export default {
+import Vue from 'vue';
+
+export default Vue.extend({
 	name: 'login-view',
 	data() {
 		return {
@@ -41,4 +43,4 @@ export default {
 			});
 		},
 	},
-};
+});
