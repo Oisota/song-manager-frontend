@@ -13,19 +13,19 @@ export default Vue.extend({
 	methods: {
 		async login() {
 			try {
-				await this.$store.dispatch('login', {
+				await this.$store.dispatch('user/login', {
 					email: this.email,
 					password: this.password,
 				});
-				await this.$store.dispatch('loadUser');
+				await this.$store.dispatch('user/load');
 			} catch (err) {
 				console.log(err);
 			}
-			this.$router.push('/');
+			this.$router.push({name: 'home'});
 		},
 		async register() {
 			try {
-				await this.$store.dispatch('register', {
+				await this.$store.dispatch('user/register', {
 					email: this.registerEmail,
 					password: this.registerPassword,
 				});

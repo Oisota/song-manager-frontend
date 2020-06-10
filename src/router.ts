@@ -11,6 +11,7 @@ const router = new VueRouter({
 	routes: [
 		{
 			path: '/',
+			name: 'home',
 			component: pages.MainView,
 			meta: {
 				title: 'Song Manager',
@@ -18,6 +19,7 @@ const router = new VueRouter({
 		},
 		{
 			path: '/login',
+			name: 'login',
 			component: pages.LoginView,
 			meta: {
 				title: 'Login',
@@ -25,6 +27,7 @@ const router = new VueRouter({
 		},
 		{
 			path: '*',
+			name: 'not-found',
 			component: pages.NotFoundView,
 			meta: {
 				title: 'Not Found',
@@ -37,7 +40,7 @@ router.beforeEach((to, from_, next) => {
 	document.title = to.meta.title;
 	const loggedIn = store.getters['user/loggedIn'];
 	if (!loggedIn && to.path !== '/login') {
-		next('/login');
+		next({name: 'login'});
 	} else {
 		next();
 	}

@@ -9,8 +9,8 @@ export default Vue.extend({
 	},
 	methods: {
 		logout() {
-			this.$store.commit('logout');
-			this.$router.push('/login');
+			this.$store.commit('user/logout');
+			this.$router.push({name: 'login'});
 		}
 	}
 });
